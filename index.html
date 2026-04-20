@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IKAR Soluciones en Construccion | Apartamentos y Edificios en Colombia</title>
+  <meta name="description"
+    content="IKAR Soluciones en Construccion - Constructora y arquitectos en Colombia. Apartamentos y edificios en Barrancabermeja y Santander. 7 anos de experiencia." />
+  <meta name="keywords"
+    content="constructora Colombia, apartamentos en venta, Barrancabermeja, IKAR, proyectos residenciales" />
+  <meta property="og:title" content="IKAR Soluciones en Construccion | Proyectos Residenciales en Colombia" />
+  <meta property="og:description"
+    content="Apartamentos, edificios y lotes en venta. Construyendo el futuro de Colombia." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="images/logo_dark.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#001F3F',
+            'navy-light': '#003366',
+            orange: '#FF6B00',
+            'orange-dark': '#CC5500',
+            carbon: '#111111',
+            'carbon-2': '#1A1A1A',
+            'carbon-3': '#222222',
+            gold: '#C9A84C',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * {
+      scroll-behavior: smooth;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111111;
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Navbar */
+    #navbar {
+      transition: background .4s, box-shadow .4s;
+    }
+
+    #navbar.scrolled {
+      background: rgba(10, 10, 10, .97) !important;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, .7);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #FF6B00;
+      transition: width .3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(10, 10, 10, .92) 0%, rgba(0, 31, 63, .65) 60%, rgba(255, 107, 0, .12) 100%);
+    }
+
+    /* Cards */
+    .prop-card {
+      transition: transform .3s, box-shadow .3s;
+      background: #1A1A1A;
+    }
+
+    .prop-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(255, 107, 0, .15);
+    }
+
+    .service-card {
+      transition: transform .3s, box-shadow .3s;
+      background: #1A1A1A;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+    }
+
+    .valor-card {
+      transition: transform .3s, background .3s;
+      background: #1A1A1A;
+    }
+
+    .valor-card:hover {
+      transform: translateY(-6px);
+      background: #001F3F;
+    }
+
+    .valor-card:hover h4 {
+      color: #fff;
+    }
+
+    .valor-card:hover p {
+      color: #ccc;
+    }
+
+    .valor-card:hover .valor-icon {
+      background: #FF6B00;
+    }
+
+    /* Filters */
+    .filter-btn {
+      transition: all .25s;
+    }
+
+    .filter-btn.active {
+      background: #FF6B00;
+      color: #fff;
+      border-color: #FF6B00;
+    }
+
+    .filter-btn:not(.active):hover {
+      border-color: #FF6B00;
+      color: #FF6B00;
+    }
+
+    /* Gradient text */
+    .text-gradient {
+      background: linear-gradient(90deg, #FF6B00, #FF8C33);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Section divider */
+    .section-divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #FF6B00, #FF8C33);
+      border-radius: 2px;
+    }
+
+    /* Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: max-height .4s ease, opacity .4s ease;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    #mobile-menu.open {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    /* Form inputs */
+    .form-input {
+      transition: border-color .3s, box-shadow .3s;
+      background: #1A1A1A;
+      border-color: #333;
+      color: #f0f0f0;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #FF6B00;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, .15);
+    }
+
+    .form-input::placeholder {
+      color: #666;
+    }
+
+    /* WA float */
+    #wa-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* Badge estados */
+    .badge-venta {
+      background: rgba(34, 197, 94, .15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, .3);
+    }
+
+    .badge-construccion {
+      background: rgba(255, 107, 0, .15);
+      color: #FF8C33;
+      border: 1px solid rgba(255, 107, 0, .3);
+    }
+
+    .badge-vendido {
+      background: rgba(255, 255, 255, .08);
+      color: #888;
+      border: 1px solid rgba(255, 255, 255, .15);
+    }
+  </style>
+</head>
+
+<body class="bg-carbon">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent px-4 md:px-8 py-1">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#inicio" class="flex-shrink-0">
+        <img src="images/logo_dark_cropped.png" alt="IKAR Soluciones en Construccion"
+          style="height:90px;width:auto;object-fit:contain;filter:drop-shadow(0 0 14px rgba(201,168,76,0.5))" />
+      </a>
+      <div class="hidden lg:flex items-center gap-7">
+        <a href="#inicio"
+          class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Inicio</a>
+        <a href="#servicios"
+          class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Servicios</a>
+        <a href="#catalogo"
+          class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Catálogo</a>
+        <a href="#nosotros"
+          class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Nosotros</a>
+        <a href="#contacto"
+          class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Contacto</a>
+        <button id="btn-admin-nav" onclick="openAdminModal()"
+          class="text-white/40 text-xs border border-white/15 rounded px-3 py-1 hover:border-orange-500 hover:text-orange-400 transition-all">Administración</button>
+        <a href="https://wa.me/573164298990" target="_blank"
+          class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-4 py-2 rounded-full transition-all shadow-lg shadow-green-900/30">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            <path
+              d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.876L.057 23.215a.75.75 0 00.927.927l5.339-1.478A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.944 0-3.757-.532-5.307-1.457l-.38-.228-3.935 1.088 1.089-3.935-.228-.38A9.713 9.713 0 012.25 12 9.75 9.75 0 0112 2.25 9.75 9.75 0 0121.75 12 9.75 9.75 0 0112 21.75z" />
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+      <button id="hamburger" onclick="toggleMobileMenu()" class="lg:hidden text-white p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="lg:hidden bg-black/95 backdrop-blur-md mt-2 rounded-xl mx-2">
+      <div class="flex flex-col px-5 py-4 gap-4">
+        <a href="#inicio" onclick="closeMobileMenu()"
+          class="text-white text-sm font-medium hover:text-orange-400">Inicio</a>
+        <a href="#servicios" onclick="closeMobileMenu()"
+          class="text-white text-sm font-medium hover:text-orange-400">Servicios</a>
+        <a href="#catalogo" onclick="closeMobileMenu()"
+          class="text-white text-sm font-medium hover:text-orange-400">Catálogo</a>
+        <a href="#nosotros" onclick="closeMobileMenu()"
+          class="text-white text-sm font-medium hover:text-orange-400">Nosotros</a>
+        <a href="#contacto" onclick="closeMobileMenu()"
+          class="text-white text-sm font-medium hover:text-orange-400">Contacto</a>
+        <button onclick="openAdminModal()"
+          class="text-white/40 text-xs border border-white/15 rounded px-3 py-1 w-fit hover:border-orange-500 hover:text-orange-400">Administración</button>
+        <a href="https://wa.me/573164298990" target="_blank"
+          class="flex items-center gap-2 bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-full w-fit">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            <path
+              d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.876L.057 23.215a.75.75 0 00.927.927l5.339-1.478A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.944 0-3.757-.532-5.307-1.457l-.38-.228-3.935 1.088 1.089-3.935-.228-.38A9.713 9.713 0 012.25 12 9.75 9.75 0 0112 2.25 9.75 9.75 0 0121.75 12 9.75 9.75 0 0112 21.75z" />
+          </svg>WhatsApp
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="images/hero_new.png" alt="Proyecto IKAR Soluciones en Construcción" class="w-full h-full object-cover" />
+      <div class="hero-overlay absolute inset-0"></div>
+    </div>
+    <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+      <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-orange-500 rounded-full opacity-60 animate-ping"
+        style="animation-delay:0s"></div>
+      <div class="absolute top-3/4 left-1/3 w-1 h-1 bg-white rounded-full opacity-30 animate-ping"
+        style="animation-delay:1.2s"></div>
+      <div class="absolute top-1/2 right-1/4 w-1 h-1 bg-orange-400 rounded-full opacity-50 animate-ping"
+        style="animation-delay:2.1s"></div>
+    </div>
+    <div class="relative z-20 max-w-5xl mx-auto px-6 text-center">
+      <div
+        class="inline-block bg-orange-500/20 border border-orange-500/40 text-orange-400 text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-widest uppercase">
+        IKAR Soluciones en Construccion
+      </div>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6"
+        style="text-shadow:0 4px 30px rgba(0,0,0,.7)">
+        <span class="text-gradient">IKAR SOLUCIONES</span><br />
+        <span style="color:#ffffff">EN CONSTRUCCION</span>
+      </h1>
+      <p class="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed">
+        Apartamentos y edificios diseñados con excelencia arquitectónica en Barrancabermeja y Santander. 7 años de experiencia, calidad,
+        solidez y confianza en cada proyecto.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#catalogo"
+          class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-4 rounded-full text-sm tracking-wide transition-all shadow-xl shadow-orange-900/30 hover:-translate-y-1">
+          Ver Nuestros Apartamentos
+        </a>
+        <a href="https://wa.me/573164298990?text=Hola%20IKAR%2C%20quiero%20información%20sobre%20sus%20proyectos"
+          target="_blank"
+          class="border-2 border-white/60 hover:border-orange-500 text-white hover:text-orange-400 font-bold px-8 py-4 rounded-full text-sm tracking-wide transition-all hover:-translate-y-1">
+          Cotiza por WhatsApp
+        </a>
+      </div>
+      <div class="mt-16 grid grid-cols-3 gap-6 max-w-xl mx-auto">
+        <div class="text-center">
+          <div class="text-3xl font-black text-orange-400">+30</div>
+          <div class="text-white/50 text-xs mt-1">Proyectos</div>
+        </div>
+        <div class="text-center border-x border-white/15">
+          <div class="text-3xl font-black text-orange-400">7+</div>
+          <div class="text-white/50 text-xs mt-1">Años de experiencia</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-black text-orange-400">500+</div>
+          <div class="text-white/50 text-xs mt-1">Familias</div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+      <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+        <div class="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOBRE NOSOTROS ===================== -->
+  <section id="nosotros" class="py-24 bg-carbon-2 relative overflow-hidden">
+    <div
+      class="absolute top-0 right-0 w-96 h-96 bg-orange-600/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none">
+    </div>
+    <div class="max-w-7xl mx-auto px-6 relative">
+      <div class="text-center mb-16 reveal">
+        <span class="text-orange-400 text-xs font-bold tracking-widest uppercase">Quiénes somos</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2 mb-4">Sobre Nosotros</h2>
+        <div class="section-divider mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 mb-16">
+        <div class="service-card rounded-2xl p-8 shadow-xl border-t-4 border-orange-600 reveal">
+          <div class="w-12 h-12 bg-orange-600/15 rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Nuestra Misión</h3>
+          <p class="text-white/60 leading-relaxed text-sm">En IKAR construimos proyectos residenciales y urbanísticos de
+            alto estándar en Colombia, entregando viviendas y espacios diseñados con precisión arquitectónica,
+            materiales de calidad y un compromiso real con el bienestar de cada familia.</p>
+        </div>
+        <div class="rounded-2xl p-8 shadow-xl border-t-4 border-orange-600 reveal"
+          style="background:#001F3F;transition-delay:.15s">
+          <div class="w-12 h-12 bg-orange-600/20 rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Nuestra Visión</h3>
+          <p class="text-white/65 leading-relaxed text-sm">Ser la constructora referente en el Magdalena Medio
+            colombiano, reconocida por la calidad técnica, el diseño arquitectónico innovador y la entrega oportuna de
+            proyectos que transforman comunidades.</p>
+        </div>
+      </div>
+      <div class="text-center mb-10 reveal">
+        <h3 class="text-2xl font-bold text-white">Nuestros Valores</h3>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="valor-card rounded-2xl p-5 text-center shadow-md cursor-default reveal border border-white/5">
+          <div
+            class="valor-icon w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center mx-auto mb-3 transition-all">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h4 class="font-bold text-sm text-white">Integridad</h4>
+          <p class="text-xs text-white/40 mt-1">Transparencia y honestidad</p>
+        </div>
+        <div class="valor-card rounded-2xl p-5 text-center shadow-md cursor-default reveal border border-white/5"
+          style="transition-delay:.1s">
+          <div
+            class="valor-icon w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center mx-auto mb-3 transition-all">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <h4 class="font-bold text-sm text-white">Innovación</h4>
+          <p class="text-xs text-white/40 mt-1">Diseño de vanguardia</p>
+        </div>
+        <div class="valor-card rounded-2xl p-5 text-center shadow-md cursor-default reveal border border-white/5"
+          style="transition-delay:.2s">
+          <div
+            class="valor-icon w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center mx-auto mb-3 transition-all">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg>
+          </div>
+          <h4 class="font-bold text-sm text-white">Excelencia</h4>
+          <p class="text-xs text-white/40 mt-1">Calidad en cada detalle</p>
+        </div>
+        <div class="valor-card rounded-2xl p-5 text-center shadow-md cursor-default reveal border border-white/5"
+          style="transition-delay:.3s">
+          <div
+            class="valor-icon w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center mx-auto mb-3 transition-all">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
+            </svg>
+          </div>
+          <h4 class="font-bold text-sm text-white">Sostenibilidad</h4>
+          <p class="text-xs text-white/40 mt-1">Construimos el futuro</p>
+        </div>
+        <div class="valor-card rounded-2xl p-5 text-center shadow-md cursor-default reveal border border-white/5"
+          style="transition-delay:.4s">
+          <div
+            class="valor-icon w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center mx-auto mb-3 transition-all">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <h4 class="font-bold text-sm text-white">Compromiso</h4>
+          <p class="text-xs text-white/40 mt-1">Tu hogar, nuestra meta</p>
+        </div>
+        <div class="valor-card rounded-2xl p-5 text-center shadow-md cursor-default reveal border border-white/5"
+          style="transition-delay:.5s">
+          <div
+            class="valor-icon w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center mx-auto mb-3 transition-all">
+            <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" />
+            </svg>
+          </div>
+          <h4 class="font-bold text-sm text-white">Precisión</h4>
+          <p class="text-xs text-white/40 mt-1">Ingeniería de alto nivel</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICIOS ===================== -->
+  <section id="servicios" class="py-24 bg-carbon">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="text-orange-400 text-xs font-bold tracking-widest uppercase">Lo que hacemos</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2 mb-4">Nuestros Servicios</h2>
+        <div class="section-divider mx-auto mb-6"></div>
+        <p class="text-white/50 max-w-2xl mx-auto text-sm">Desde el diseño arquitectónico hasta la entrega de llaves,
+          somos tu aliado completo en construcción.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="service-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/hero.png" alt="Construcción"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="absolute bottom-4 left-5"><span
+                class="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full">Construcción</span></div>
+          </div>
+          <div class="p-7 border-t border-white/5">
+            <div class="w-12 h-12 bg-orange-600/15 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Construcción Residencial</h3>
+            <p class="text-white/55 text-sm leading-relaxed mb-5">Edificamos apartamentos, casas y conjuntos
+              residenciales con los más altos estándares de ingeniería y acabados de primera calidad.</p>
+            <a href="#catalogo"
+              class="text-orange-400 font-semibold text-sm flex items-center gap-1 hover:gap-3 transition-all">Ver
+              proyectos <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="service-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group"
+          style="transition-delay:.15s">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/service_renders.png" alt="Diseño Arquitectónico"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="absolute bottom-4 left-5"><span
+                class="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full">Arquitectura</span></div>
+          </div>
+          <div class="p-7 border-t border-white/5">
+            <div class="w-12 h-12 bg-orange-600/15 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Diseño Arquitectónico</h3>
+            <p class="text-white/55 text-sm leading-relaxed mb-5">Planos, diseños interiores y exteriores pensados para
+              maximizar el espacio, la funcionalidad y la estética de cada proyecto.</p>
+            <a href="#contacto"
+              class="text-orange-400 font-semibold text-sm flex items-center gap-1 hover:gap-3 transition-all">Solicitar
+              diseño <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="service-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group"
+          style="transition-delay:.3s">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/service_rebranding.png" alt="Venta de Inmuebles"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="absolute bottom-4 left-5"><span
+                class="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full">Inmuebles</span></div>
+          </div>
+          <div class="p-7 border-t border-white/5">
+            <div class="w-12 h-12 bg-orange-600/15 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Venta de Apartamentos</h3>
+            <p class="text-white/55 text-sm leading-relaxed mb-5">Apartamentos listos para entrega
+              o en preventa. Financiación directa disponible para facilitar tu inversión.</p>
+            <a href="#catalogo"
+              class="text-orange-400 font-semibold text-sm flex items-center gap-1 hover:gap-3 transition-all">Ver
+              disponibles <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CATÁLOGO ===================== -->
+  <section id="catalogo" class="py-24 bg-carbon-2 relative overflow-hidden">
+    <div class="absolute top-20 right-20 w-96 h-96 bg-orange-600/4 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-6 relative">
+      <div class="text-center mb-12 reveal">
+        <span class="text-orange-400 text-xs font-bold tracking-widest uppercase">Proyectos disponibles</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2 mb-4">Catálogo de Apartamentos en Venta</h2>
+        <div class="section-divider mx-auto mb-6"></div>
+        <p class="text-white/50 max-w-2xl mx-auto text-sm">Encuentra el apartamento ideal para tu familia o inversión.
+          Proyectos en Barrancabermeja y Santander.</p>
+      </div>
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-3 justify-center mb-12 reveal">
+        <button
+          class="filter-btn active border border-white/20 text-white text-sm font-semibold px-5 py-2.5 rounded-full"
+          onclick="filterItems('all',this)">Todos</button>
+        <button class="filter-btn border border-white/20 text-white/60 text-sm font-semibold px-5 py-2.5 rounded-full"
+          onclick="filterItems('apartamento',this)">Apartamentos</button>
+      </div>
+      <!-- Grid -->
+      <div id="catalog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIOS ===================== -->
+  <section id="testimonios" class="py-24 bg-carbon">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="text-orange-400 text-xs font-bold tracking-widest uppercase">Lo que dicen nuestros clientes</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2 mb-4">Testimonios</h2>
+        <div class="section-divider mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          class="bg-carbon-3 border border-white/5 rounded-2xl p-6 shadow-xl reveal hover:-translate-y-1 transition-transform">
+          <div class="text-orange-400 text-4xl font-black leading-none mb-4">"</div>
+          <p class="text-white/65 text-sm leading-relaxed mb-5">Mi apartamento de IKAR superó todas las expectativas.
+            Acabados de lujo, excelente ubicación y entregado a tiempo. Ya me siento en mi nuevo hogar.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-navy flex items-center justify-center text-white font-bold text-sm">CR
+            </div>
+            <div>
+              <div class="font-semibold text-white text-sm">Carlos Rodríguez</div>
+              <div class="text-xs text-white/40">Comprador Proyecto Altos del Río</div>
+            </div>
+          </div>
+          <div class="mt-4 text-orange-400 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </div>
+        <div
+          class="bg-carbon-3 border border-white/5 rounded-2xl p-6 shadow-xl reveal hover:-translate-y-1 transition-transform"
+          style="transition-delay:.1s">
+          <div class="text-orange-400 text-4xl font-black leading-none mb-4">"</div>
+          <p class="text-white/65 text-sm leading-relaxed mb-5">Compramos nuestro apartamento el año pasado y la experiencia ha
+            sido increíble. IKAR nos dio toda la asesoría necesaria y el proceso de compra fue muy transparente.</p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-11 h-11 rounded-full bg-orange-700 flex items-center justify-center text-white font-bold text-sm">
+              MP</div>
+            <div>
+              <div class="font-semibold text-white text-sm">María Peñaloza</div>
+              <div class="text-xs text-white/40">Compradora Apartamento Zona Norte</div>
+            </div>
+          </div>
+          <div class="mt-4 text-orange-400 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </div>
+        <div
+          class="bg-carbon-3 border border-white/5 rounded-2xl p-6 shadow-xl reveal hover:-translate-y-1 transition-transform"
+          style="transition-delay:.2s">
+          <div class="text-orange-400 text-4xl font-black leading-none mb-4">"</div>
+          <p class="text-white/65 text-sm leading-relaxed mb-5">Los acabados de mi apartamento son de primera. La sala,
+            los cuartos y la cocina están perfectamente distribuidos. IKAR definitivamente sabe lo que hace.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-navy flex items-center justify-center text-white font-bold text-sm">JM
+            </div>
+            <div>
+              <div class="font-semibold text-white text-sm">Jorge Medina</div>
+              <div class="text-xs text-white/40">Residente Torre Central IKAR</div>
+            </div>
+          </div>
+          <div class="mt-4 text-orange-400 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </div>
+        <div
+          class="bg-carbon-3 border border-white/5 rounded-2xl p-6 shadow-xl reveal hover:-translate-y-1 transition-transform"
+          style="transition-delay:.3s">
+          <div class="text-orange-400 text-4xl font-black leading-none mb-4">"</div>
+          <p class="text-white/65 text-sm leading-relaxed mb-5">Excelente inversión. La constructora cumplió en tiempo y
+            forma, los acabados son de primera y el precio fue muy justo. Recomiendo IKAR al 100%.</p>
+          <div class="flex items-center gap-3">
+            <div
+              class="w-11 h-11 rounded-full bg-orange-700 flex items-center justify-center text-white font-bold text-sm">
+              LC</div>
+            <div>
+              <div class="font-semibold text-white text-sm">Luz Castro</div>
+              <div class="text-xs text-white/40">Compradora Apartamento Familiar</div>
+            </div>
+          </div>
+          <div class="mt-4 text-orange-400 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section id="contacto" class="py-24 bg-carbon-2">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="text-orange-400 text-xs font-bold tracking-widest uppercase">Hablemos</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2 mb-4">Contáctanos</h2>
+        <div class="section-divider mx-auto mb-6"></div>
+        <p class="text-white/50 max-w-xl mx-auto text-sm">¿Interesado en algún proyecto? Escríbenos y te asesoramos sin
+          compromiso.</p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="bg-carbon-3 border border-white/5 rounded-3xl p-8 reveal">
+          <form id="contact-form" onsubmit="submitContactForm(event)">
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-xs font-semibold text-white/70 mb-2">Nombre completo *</label>
+                <input id="cf-name" type="text" required placeholder="Tu nombre"
+                  class="form-input w-full border rounded-xl px-4 py-3 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-white/70 mb-2">Teléfono / WhatsApp</label>
+                <input id="cf-phone" type="tel" placeholder="+57 300 0000000"
+                  class="form-input w-full border rounded-xl px-4 py-3 text-sm" />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-xs font-semibold text-white/70 mb-2">Email *</label>
+              <input id="cf-email" type="email" required placeholder="tu@email.com"
+                class="form-input w-full border rounded-xl px-4 py-3 text-sm" />
+            </div>
+            <div class="mb-4">
+              <label class="block text-xs font-semibold text-white/70 mb-2">¿Qué te interesa?</label>
+              <select id="cf-service" class="form-input w-full border rounded-xl px-4 py-3 text-sm">
+                <option value="">Seleccionar...</option>
+                <option>Apartamento en venta</option>
+                <option>Información general</option>
+                <option>Financiación</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label class="block text-xs font-semibold text-white/70 mb-2">Mensaje *</label>
+              <textarea id="cf-message" required rows="4" placeholder="Cuéntanos en qué proyecto estás interesado..."
+                class="form-input w-full border rounded-xl px-4 py-3 text-sm resize-none"></textarea>
+            </div>
+            <button type="submit"
+              class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-xl transition-all text-sm tracking-wide hover:-translate-y-0.5 shadow-lg shadow-orange-900/30">
+              Enviar Mensaje
+            </button>
+            <div id="form-success"
+              class="hidden mt-4 bg-green-900/30 border border-green-700/40 text-green-400 text-sm rounded-xl p-4 text-center">
+              âœ… ¡Mensaje enviado! Te contactaremos pronto.
+            </div>
+          </form>
+        </div>
+        <div class="reveal" style="transition-delay:.2s">
+          <a href="https://wa.me/573164298990?text=Hola%20IKAR%2C%20quiero%20información%20sobre%20sus%20proyectos"
+            target="_blank"
+            class="flex items-center gap-5 bg-green-600 hover:bg-green-700 text-white rounded-2xl p-6 mb-6 transition-all group shadow-lg shadow-green-900/30 hover:-translate-y-1">
+            <div class="w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.876L.057 23.215a.75.75 0 00.927.927l5.339-1.478A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.944 0-3.757-.532-5.307-1.457l-.38-.228-3.935 1.088 1.089-3.935-.228-.38A9.713 9.713 0 012.25 12 9.75 9.75 0 0112 2.25 9.75 9.75 0 0121.75 12 9.75 9.75 0 0112 21.75z" />
+              </svg>
+            </div>
+            <div>
+              <div class="font-bold text-lg">Escríbenos por WhatsApp</div>
+              <div class="text-white/80 text-sm">+57 316 429 8990 · Respuesta inmediata</div>
+            </div>
+            <svg class="w-6 h-6 ml-auto group-hover:translate-x-1 transition-transform" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 bg-carbon-3 border border-white/5 rounded-2xl p-5">
+              <div class="w-10 h-10 bg-navy rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-white text-sm">Ubicación</div>
+                <div class="text-white/50 text-sm">Barrancabermeja, Santander ”“ Colombia</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 bg-carbon-3 border border-white/5 rounded-2xl p-5">
+              <div class="w-10 h-10 bg-navy rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-white text-sm">Email</div>
+                <div class="text-white/50 text-sm">contacto@ikarconstructora.com.co</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 bg-carbon-3 border border-white/5 rounded-2xl p-5">
+              <div class="w-10 h-10 bg-navy rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-white text-sm">Horario</div>
+                <div class="text-white/50 text-sm">Lun ”“ Vie: 8:00 AM ”“ 6:00 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-black text-white py-16 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-2">
+          <img src="images/logo_dark.png" alt="IKAR Soluciones en Construccion"
+            style="height:120px;max-width:320px;object-fit:contain;margin-bottom:1rem;filter:drop-shadow(0 0 10px rgba(201,168,76,0.3))" />
+          <p class="text-white/45 text-sm leading-relaxed max-w-sm">Constructora y arquitectos especializados en
+            proyectos residenciales en Colombia. Edificamos el presente, construimos tu futuro.</p>
+          <div class="flex gap-4 mt-5">
+            <a href="https://wa.me/573164298990" target="_blank"
+              class="w-9 h-9 bg-white/8 hover:bg-green-600 rounded-lg flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path
+                  d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.876L.057 23.215a.75.75 0 00.927.927l5.339-1.478A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.944 0-3.757-.532-5.307-1.457l-.38-.228-3.935 1.088 1.089-3.935-.228-.38A9.713 9.713 0 012.25 12 9.75 9.75 0 0112 2.25 9.75 9.75 0 0121.75 12 9.75 9.75 0 0112 21.75z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-9 h-9 bg-white/8 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-9 h-9 bg-white/8 hover:bg-pink-700 rounded-lg flex items-center justify-center transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs tracking-widest uppercase mb-5 text-orange-400">Proyectos</h4>
+          <ul class="space-y-3 text-sm text-white/45">
+            <li><a href="#catalogo" class="hover:text-orange-400 transition-colors">Apartamentos en Venta</a></li>
+            <li><a href="#catalogo" class="hover:text-orange-400 transition-colors">En Construcción</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs tracking-widest uppercase mb-5 text-orange-400">Compañía</h4>
+          <ul class="space-y-3 text-sm text-white/45">
+            <li><a href="#nosotros" class="hover:text-orange-400 transition-colors">Sobre Nosotros</a></li>
+            <li><a href="#servicios" class="hover:text-orange-400 transition-colors">Servicios</a></li>
+            <li><a href="#testimonios" class="hover:text-orange-400 transition-colors">Testimonios</a></li>
+            <li><a href="#contacto" class="hover:text-orange-400 transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-white/30 text-sm">Â&copy; 2026 IKAR Constructora SAS. Todos los derechos reservados.</p>
+        <div class="flex gap-6 text-white/30 text-sm">
+          <a href="#" class="hover:text-orange-400 transition-colors">Política de Privacidad</a>
+          <a href="#" class="hover:text-orange-400 transition-colors">Términos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Flotante -->
+  <a id="wa-float" href="https://wa.me/573164298990?text=Hola%20IKAR%2C%20quiero%20información" target="_blank"
+    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-600 hover:bg-green-700 rounded-full flex items-center justify-center shadow-2xl shadow-green-900/50 hover:scale-110 transition-all">
+    <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path
+        d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.14 1.535 5.876L.057 23.215a.75.75 0 00.927.927l5.339-1.478A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.944 0-3.757-.532-5.307-1.457l-.38-.228-3.935 1.088 1.089-3.935-.228-.38A9.713 9.713 0 012.25 12 9.75 9.75 0 0112 2.25 9.75 9.75 0 0121.75 12 9.75 9.75 0 0112 21.75z" />
+    </svg>
+  </a>
+
+
+
+  <!-- ===================== ADMIN MODAL ===================== -->
+  <div id="admin-modal"
+    class="hidden fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center px-4">
+    <div class="bg-carbon-3 border border-white/10 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden">
+      <div id="admin-login" class="p-8">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h3 class="text-xl font-black text-white">Panel de Administradores IKAR</h3>
+            <p class="text-white/40 text-sm mt-1">Ingrese su código de acceso</p>
+          </div>
+          <button onclick="closeAdminModal()"
+            class="w-9 h-9 bg-white/8 hover:bg-white/15 rounded-xl flex items-center justify-center transition-colors">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="bg-black/30 rounded-2xl p-6 mb-4 border border-white/5">
+          <label class="block text-sm font-semibold text-white/70 mb-3">Código de acceso</label>
+          <input id="admin-code-input" type="password" maxlength="6" placeholder="”¢”¢”¢”¢"
+            class="w-full bg-black/50 border border-white/15 focus:border-orange-500 rounded-xl px-4 py-3 text-center text-2xl tracking-widest font-bold text-white outline-none transition-colors" />
+          <p id="admin-error" class="hidden text-red-400 text-xs mt-2 text-center">Código incorrecto. Intente de nuevo.
+          </p>
+        </div>
+        <button onclick="verifyAdminCode()"
+          class="w-full bg-navy hover:bg-navy-light text-white font-bold py-3.5 rounded-xl transition-all text-sm border border-orange-600/30">
+          Acceder al Panel
+        </button>
+      </div>
+      <div id="admin-dashboard" class="hidden">
+        <div class="bg-navy px-8 py-5 flex items-center justify-between border-b border-white/10">
+          <div>
+            <h3 class="text-white font-black">Panel Admin ”“ IKAR</h3>
+            <p id="admin-welcome" class="text-orange-400 text-sm font-semibold"></p>
+          </div>
+          <button onclick="closeAdminModal()"
+            class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-colors">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="p-6 max-h-[75vh] overflow-y-auto">
+          <div class="bg-black/30 border border-white/8 rounded-2xl p-5 mb-6">
+            <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wide">âž• Agregar Propiedad</h4>
+            <div class="grid grid-cols-2 gap-3 mb-3">
+              <div>
+                <label class="text-xs font-semibold text-white/50 mb-1 block">Nombre del proyecto</label>
+                <input id="ap-name" type="text" placeholder="Ej: Apto Torre Norte 301"
+                  class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-white/50 mb-1 block">Tipo</label>
+                <select id="ap-type"
+                  class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white">
+                  <option value="apartamento">Apartamento</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mb-3">
+              <div>
+                <label class="text-xs font-semibold text-white/50 mb-1 block">Ubicación</label>
+                <input id="ap-location" type="text" placeholder="Ej: Barrio El Centro"
+                  class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-white/50 mb-1 block">Precio</label>
+                <input id="ap-price" type="text" placeholder="Ej: $280.000.000"
+                  class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30" />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mb-3">
+              <div>
+                <label class="text-xs font-semibold text-white/50 mb-1 block">Área mÂ&#178;</label>
+                <input id="ap-area" type="text" placeholder="Ej: 72 mÂ&#178;"
+                  class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-white/30" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-white/50 mb-1 block">Estado</label>
+                <select id="ap-status"
+                  class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white">
+                  <option value="venta">En venta</option>
+                  <option value="construccion">En construcción</option>
+                  <option value="vendido">Vendido</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="text-xs font-semibold text-white/50 mb-2 block">Foto del proyecto</label>
+              <!-- Upload zone -->
+              <label for="ap-img-file" id="upload-zone"
+                class="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-white/20 hover:border-orange-500 rounded-xl p-5 cursor-pointer transition-all group">
+                <svg class="w-8 h-8 text-white/30 group-hover:text-orange-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span id="upload-label" class="text-xs text-white/40 group-hover:text-orange-400 transition-colors text-center">Haz clic o arrastra una foto aqu&iacute;<br/><span class="text-white/25">JPG, PNG, WEBP &mdash; m&aacute;x. 5 MB</span></span>
+                <input id="ap-img-file" type="file" accept="image/*" class="hidden" onchange="previewUpload(this)" />
+              </label>
+              <!-- Preview -->
+              <div id="img-preview-wrap" class="hidden mt-3 relative rounded-xl overflow-hidden border border-white/10">
+                <img id="img-preview" src="" alt="Preview" class="w-full h-36 object-cover" />
+                <button type="button" onclick="clearUpload()"
+                  class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <button onclick="addProperty()"
+              class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all">
+              Guardar Propiedad
+            </button>
+            <p id="ap-success" class="hidden text-green-400 text-xs text-center mt-2">âœ… Propiedad agregada
+              correctamente</p>
+          </div>
+          <div>
+            <h4 class="font-bold text-white mb-3 text-sm uppercase tracking-wide">ðŸ“‹ Propiedades Actuales</h4>
+            <div id="admin-prop-list" class="space-y-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // CATÁLOGO BASE DE PROPIEDADES
+    // ============================================================
+    const BASE_PROPERTIES = [
+      {
+        id: 'prop-1', type: 'apartamento', typeLabel: 'Apartamento',
+        name: 'Apartamento Altos del Río ”“ Piso 3',
+        location: 'Barrio El Centro, Barrancabermeja',
+        price: '$280.000.000 COP', area: '72 mÂ&#178;', status: 'venta',
+        img: 'images/hero.png'
+      },
+      {
+        id: 'prop-2', type: 'apartamento', typeLabel: 'Apartamento',
+        name: 'Apartamento Torre Central ”“ Piso 7',
+        location: 'Zona Rosa, Barrancabermeja',
+        price: '$320.000.000 COP', area: '85 mÂ&#178;', status: 'venta',
+        img: 'images/service_renders.png'
+      },
+      {
+        id: 'prop-3', type: 'apartamento', typeLabel: 'Apartamento',
+        name: 'Apartamento Residencial Palmas ”“ Piso 2',
+        location: 'El Parnaso, Barrancabermeja',
+        price: '$215.000.000 COP', area: '60 mÂ&#178;', status: 'construccion',
+        img: 'images/pkg_render_virtual.png'
+      },
+      {
+        id: 'prop-4', type: 'apartamento', typeLabel: 'Apartamento',
+        name: 'Apartamento Ciudad Jardin - Piso 4',
+        location: 'Ciudadela Real de Minas, Barrancabermeja',
+        price: '$240.000.000 COP', area: '65 m&#178;', status: 'venta',
+        img: 'images/pkg_render_basic.png'
+      },
+      {
+        id: 'prop-5', type: 'apartamento', typeLabel: 'Apartamento',
+        name: 'Apartamento Mirador Santander - Piso 6',
+        location: 'Av. El Libertador, Barrancabermeja',
+        price: '$310.000.000 COP', area: '80 m&#178;', status: 'venta',
+        img: 'images/service_rebranding.png'
+      },
+      {
+        id: 'prop-6', type: 'apartamento', typeLabel: 'Apartamento',
+        name: 'Apartamento Reserva del Parque ”“ Piso 5',
+        location: 'Ciudadela Real de Minas, Barrancabermeja',
+        price: '$255.000.000 COP', area: '68 mÂ&#178;', status: 'vendido',
+        img: 'images/service_webdesign.png'
+      }
+    ];
+
+    const STATUS_CLASSES = {
+      venta: { cls: 'badge-venta', label: 'En venta' },
+      construccion: { cls: 'badge-construccion', label: 'En construcción' },
+      vendido: { cls: 'badge-vendido', label: 'Vendido' }
+    };
+
+    function getAllProperties() {
+      const custom = JSON.parse(localStorage.getItem('ikar_props') || '[]');
+      const deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
+      return [...BASE_PROPERTIES.filter(p => !deleted.includes(p.id)), ...custom];
+    }
+    function getCustomProperties() { return JSON.parse(localStorage.getItem('ikar_props') || '[]'); }
+    function saveCustomProperties(arr) { localStorage.setItem('ikar_props', JSON.stringify(arr)); }
+
+    // ============================================================
+    // RENDER CATÁLOGO
+    // ============================================================
+    let currentFilter = 'all';
+
+    function renderCatalog(filter) {
+      currentFilter = filter;
+      const grid = document.getElementById('catalog-grid');
+      const items = getAllProperties().filter(p => filter === 'all' || p.type === filter);
+      if (!items.length) {
+        grid.innerHTML = '<div class="col-span-3 text-center text-white/40 py-16">No hay propiedades en esta categoría.</div>';
+        return;
+      }
+      grid.innerHTML = items.map(p => {
+        const st = STATUS_CLASSES[p.status] || STATUS_CLASSES.venta;
+        const btnDisabled = p.status === 'vendido';
+        return `
+    <div class="prop-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group">
+      <div class="relative h-48 overflow-hidden">
+        <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-carbon-3" onerror="this.src='images/hero.png'"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+        <div class="absolute top-3 right-3">
+          <span class="text-xs font-bold px-3 py-1 rounded-full ${st.cls}">${st.label}</span>
+        </div>
+        <div class="absolute bottom-3 left-4">
+          <span class="bg-white/15 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">${p.typeLabel}</span>
+        </div>
+      </div>
+      <div class="p-6">
+        <h3 class="font-black text-white text-base mb-1 leading-tight">${p.name}</h3>
+        <div class="flex items-center gap-1 text-white/50 text-xs mb-4">
+          <svg class="w-3.5 h-3.5 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+          ${p.location}
+        </div>
+        <div class="flex items-center gap-4 mb-5">
+          <div class="flex items-center gap-1.5 text-white/60 text-xs">
+            <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+            ${p.area}
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-white/5">
+          <div>
+            <div class="text-white/40 text-xs mb-0.5">Precio</div>
+            <div class="text-xl font-black text-white">${p.price}</div>
+          </div>
+          ${btnDisabled
+            ? `<span class="bg-white/8 text-white/40 text-xs font-semibold px-4 py-2.5 rounded-xl">No disponible</span>`
+            : `<a href="https://wa.me/573164298990?text=Hola%20IKAR%2C%20quiero%20ver%20${encodeURIComponent(p.name)}" target="_blank"
+                class="bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-orange-900/30">
+                Ver detalles
+               </a>`
+          }
+        </div>
+      </div>
+    </div>`;
+      }).join('');
+      document.querySelectorAll('#catalog-grid .reveal').forEach(el => {
+        el.classList.remove('visible');
+        revealObserver.observe(el);
+      });
+    }
+
+    function filterItems(type, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCatalog(type);
+    }
+
+    // ============================================================
+    // ADMIN ”“ códigos: 8579=William | 8580=Luz Carime
+    // ============================================================
+    const ADMIN_CODES = { '8579': 'William', '8580': 'Luz Carime' };
+
+    function openAdminModal() {
+      document.getElementById('admin-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      const user = sessionStorage.getItem('ikar_admin');
+      if (user) { showAdminDashboard(user); }
+      else {
+        document.getElementById('admin-login').classList.remove('hidden');
+        document.getElementById('admin-dashboard').classList.add('hidden');
+        setTimeout(() => document.getElementById('admin-code-input').focus(), 100);
+      }
+    }
+    function closeAdminModal() {
+      document.getElementById('admin-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    function clearAdminError() { document.getElementById('admin-error').classList.add('hidden'); }
+    function verifyAdminCode() {
+      const code = document.getElementById('admin-code-input').value.trim();
+      const user = ADMIN_CODES[code];
+      if (user) {
+        sessionStorage.setItem('ikar_admin', user);
+        document.getElementById('admin-code-input').value = '';
+        showAdminDashboard(user);
+      } else {
+        document.getElementById('admin-error').classList.remove('hidden');
+        document.getElementById('admin-code-input').value = '';
+        document.getElementById('admin-code-input').focus();
+      }
+    }
+    function showAdminDashboard(user) {
+      document.getElementById('admin-login').classList.add('hidden');
+      document.getElementById('admin-dashboard').classList.remove('hidden');
+      document.getElementById('admin-welcome').textContent = `Bienvenido, ${user}`;
+      renderAdminList();
+    }
+    function renderAdminList() {
+      const all = getAllProperties();
+      // All properties are deletable
+      document.getElementById('admin-prop-list').innerHTML = all.map(p => `
+    <div class="flex items-center justify-between bg-black/30 border border-white/5 rounded-xl px-4 py-3 gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="font-semibold text-white text-sm truncate">${p.name}</div>
+        <div class="text-xs text-white/40">${p.typeLabel} · <span class="text-orange-400 font-bold">${p.price}</span> · ${p.area}</div>
+      </div>
+      <div class="flex items-center gap-2 flex-shrink-0">
+        <button onclick="deleteProperty('${p.id}')" class="text-xs bg-red-900/40 hover:bg-red-600 text-red-400 hover:text-white px-3 py-1.5 rounded-lg transition-all font-semibold">Eliminar</button>
+      </div>
+    </div>`).join('');
+    }
+// ============================================================
+    // UPLOAD HELPERS
+    // ============================================================
+    let _uploadedImgData = null;
+
+    function previewUpload(input) {
+      const file = input.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) {
+        alert('La foto es muy grande. Maximo 5 MB.');
+        input.value = '';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        _uploadedImgData = e.target.result;
+        document.getElementById('img-preview').src = _uploadedImgData;
+        document.getElementById('img-preview-wrap').classList.remove('hidden');
+        document.getElementById('upload-label').innerHTML =
+          '<span class="text-orange-400 font-semibold">' + file.name + '</span><br/><span class="text-white/25">Foto cargada correctamente</span>';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearUpload() {
+      _uploadedImgData = null;
+      document.getElementById('ap-img-file').value = '';
+      document.getElementById('img-preview').src = '';
+      document.getElementById('img-preview-wrap').classList.add('hidden');
+      document.getElementById('upload-label').innerHTML =
+        'Haz clic o arrastra una foto aqui<br/><span class="text-white/25">JPG, PNG, WEBP - max. 5 MB</span>';
+    }
+
+    // Drag and drop support for upload zone
+    document.addEventListener('DOMContentLoaded', function() {
+      const zone = document.getElementById('upload-zone');
+      if (!zone) return;
+      zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('border-orange-500'); });
+      zone.addEventListener('dragleave', function() { zone.classList.remove('border-orange-500'); });
+      zone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        zone.classList.remove('border-orange-500');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const input = document.getElementById('ap-img-file');
+          const dt = new DataTransfer();
+          dt.items.add(file);
+          input.files = dt.files;
+          previewUpload(input);
+        }
+      });
+    });
+
+    function addProperty() {
+      const name = document.getElementById('ap-name').value.trim();
+      const type = document.getElementById('ap-type').value;
+      const location = document.getElementById('ap-location').value.trim();
+      const price = document.getElementById('ap-price').value.trim();
+      const area = document.getElementById('ap-area').value.trim();
+      const status = document.getElementById('ap-status').value;
+      if (!name || !price) { alert('Nombre y precio son obligatorios.'); return; }
+      if (!_uploadedImgData) { alert('Por favor selecciona una foto para el proyecto.'); return; }
+      const typeLabels = { apartamento: 'Apartamento' };
+      const newProp = {
+        id: 'custom-' + Date.now(),
+        type: type,
+        typeLabel: typeLabels[type] || 'Apartamento',
+        name: name,
+        location: location || 'Barrancabermeja',
+        price: price,
+        area: area || '-',
+        status: status,
+        img: _uploadedImgData,
+        custom: true
+      };
+      const custom = getCustomProperties();
+      custom.push(newProp);
+      saveCustomProperties(custom);
+      ['ap-name', 'ap-location', 'ap-price', 'ap-area'].forEach(function(id) { document.getElementById(id).value = ''; });
+      clearUpload();
+      document.getElementById('ap-success').classList.remove('hidden');
+      setTimeout(function() { document.getElementById('ap-success').classList.add('hidden'); }, 3000);
+      renderAdminList();
+      renderCatalog(currentFilter);
+    }
+    function deleteProperty(id) {
+      if (!confirm('¿Eliminar esta propiedad?')) return;
+      const isBase = BASE_PROPERTIES.some(p => p.id === id);
+      if (isBase) {
+        const deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
+        if (!deleted.includes(id)) deleted.push(id);
+        localStorage.setItem('ikar_deleted', JSON.stringify(deleted));
+      } else {
+        saveCustomProperties(getCustomProperties().filter(p => p.id !== id));
+      }
+      renderAdminList();
+      renderCatalog(currentFilter);
+    }
+
+    // Close on backdrop
+    document.getElementById('admin-modal').addEventListener('click', function (e) { if (e.target === this) closeAdminModal(); });
+    document.getElementById('admin-code-input').addEventListener('keydown', e => { if (e.key === 'Enter') verifyAdminCode(); });
+
+    // ============================================================
+    // NAVBAR SCROLL
+    // ============================================================
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ============================================================
+    // MOBILE MENU
+    // ============================================================
+    function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+    function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+
+    // ============================================================
+    // SCROLL REVEAL
+    // ============================================================
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ============================================================
+    // CONTACT FORM
+    // ============================================================
+    function submitContactForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('cf-name').value;
+      const email = document.getElementById('cf-email').value;
+      const service = document.getElementById('cf-service').value;
+      const message = document.getElementById('cf-message').value;
+      const text = `Hola IKAR! Soy ${name} (${email}). ${service ? 'Me interesa: ' + service + '.' : ''} ${message}`;
+      document.getElementById('form-success').classList.remove('hidden');
+      document.getElementById('contact-form').reset();
+      setTimeout(() => window.open(`https://wa.me/573164298990?text=${encodeURIComponent(text)}`, '_blank'), 800);
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', () => { renderCatalog('all'); });
+  </script>
+</body>
+
+</html>
