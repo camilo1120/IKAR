@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -506,7 +506,7 @@
         <p class="text-white/50 max-w-2xl mx-auto text-sm">Desde el diseño arquitectónico hasta la entrega de llaves,
           somos tu aliado completo en construcción.</p>
       </div>
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="service-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group">
           <div class="relative h-52 overflow-hidden">
             <img src="images/hero.png" alt="Construcción"
@@ -580,6 +580,33 @@
             <a href="#catalogo"
               class="text-orange-400 font-semibold text-sm flex items-center gap-1 hover:gap-3 transition-all">Ver
               disponibles <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg></a>
+          </div>
+        </div>
+        <!-- REMODELACIONES -->
+        <div class="service-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group"
+          style="transition-delay:.45s">
+          <div class="relative h-52 overflow-hidden">
+            <img src="images/service_remodelaciones.png" alt="Remodelaciones"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            <div class="absolute bottom-4 left-5"><span
+                class="bg-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full">Remodelaciones</span></div>
+          </div>
+          <div class="p-7 border-t border-white/5">
+            <div class="w-12 h-12 bg-orange-600/15 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">Remodelaciones</h3>
+            <p class="text-white/55 text-sm leading-relaxed mb-5">Transformamos espacios existentes con acabados
+              de lujo, remodelación de cocinas, baños, fachadas y adecuaciones integrales.</p>
+            <a href="#contacto"
+              class="text-orange-400 font-semibold text-sm flex items-center gap-1 hover:gap-3 transition-all">Solicitar
+              cotización <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg></a>
           </div>
@@ -789,7 +816,7 @@
               </div>
               <div>
                 <div class="font-semibold text-white text-sm">Email</div>
-                <div class="text-white/50 text-sm">contacto@ikarconstructora.com.co</div>
+                <div class="text-white/50 text-sm">constructoraikar@gmail.com</div>
               </div>
             </div>
             <div class="flex items-center gap-4 bg-carbon-3 border border-white/5 rounded-2xl p-5">
@@ -973,19 +1000,29 @@
               </div>
             </div>
             <div class="mb-4">
-              <label class="text-xs font-semibold text-white/50 mb-2 block">Foto del proyecto</label>
+              <label class="text-xs font-semibold text-white/50 mb-2 block">Foto o Video del proyecto</label>
               <!-- Upload zone -->
               <label for="ap-img-file" id="upload-zone"
                 class="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-white/20 hover:border-orange-500 rounded-xl p-5 cursor-pointer transition-all group">
                 <svg class="w-8 h-8 text-white/30 group-hover:text-orange-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
                 </svg>
-                <span id="upload-label" class="text-xs text-white/40 group-hover:text-orange-400 transition-colors text-center">Haz clic o arrastra una foto aqu&iacute;<br/><span class="text-white/25">JPG, PNG, WEBP &mdash; m&aacute;x. 5 MB</span></span>
-                <input id="ap-img-file" type="file" accept="image/*" class="hidden" onchange="previewUpload(this)" />
+                <span id="upload-label" class="text-xs text-white/40 group-hover:text-orange-400 transition-colors text-center">Haz clic o arrastra una foto o video aqu&iacute;<br/><span class="text-white/25">JPG, PNG, WEBP, MP4, MOV &mdash; m&aacute;x. 100 MB</span></span>
+                <input id="ap-img-file" type="file" accept="image/*,video/*" class="hidden" onchange="previewUpload(this)" />
               </label>
-              <!-- Preview -->
+              <!-- Preview imagen -->
               <div id="img-preview-wrap" class="hidden mt-3 relative rounded-xl overflow-hidden border border-white/10">
                 <img id="img-preview" src="" alt="Preview" class="w-full h-36 object-cover" />
+                <button type="button" onclick="clearUpload()"
+                  class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <!-- Preview video -->
+              <div id="vid-preview-wrap" class="hidden mt-3 relative rounded-xl overflow-hidden border border-white/10">
+                <video id="vid-preview" class="w-full h-36 object-cover" muted playsinline controls></video>
                 <button type="button" onclick="clearUpload()"
                   class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
                   <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1010,161 +1047,225 @@
     </div>
   </div>
 
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
   <script>
     // ============================================================
-    // CATÁLOGO BASE DE PROPIEDADES
+    // FIREBASE CONFIG — Reemplaza con tu configuración de Firebase
+    // ============================================================
+    const FIREBASE_CONFIG = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // ============================================================
+    // CATÁLOGO BASE (propiedades fijas)
     // ============================================================
     const BASE_PROPERTIES = [
       {
         id: 'prop-1', type: 'apartamento', typeLabel: 'Apartamento',
-        name: 'Apartamento Altos del Río ”“ Piso 3',
+        name: 'Apartamento Altos del R\u00edo \u2013 Piso 3',
         location: 'Barrio El Centro, Piedecuesta',
-        price: '$280.000.000 COP', area: '72 mÂ&#178;', status: 'venta',
-        img: 'images/hero.png'
+        price: '$280.000.000 COP', area: '72 m\u00b2', status: 'venta',
+        mediaUrl: 'images/hero.png', mediaType: 'image'
       },
       {
         id: 'prop-2', type: 'apartamento', typeLabel: 'Apartamento',
-        name: 'Apartamento Torre Central ”“ Piso 7',
+        name: 'Apartamento Torre Central \u2013 Piso 7',
         location: 'Zona Rosa, Piedecuesta',
-        price: '$320.000.000 COP', area: '85 mÂ&#178;', status: 'venta',
-        img: 'images/service_renders.png'
+        price: '$320.000.000 COP', area: '85 m\u00b2', status: 'venta',
+        mediaUrl: 'images/service_renders.png', mediaType: 'image'
       },
       {
         id: 'prop-3', type: 'apartamento', typeLabel: 'Apartamento',
-        name: 'Apartamento Residencial Palmas ”“ Piso 2',
+        name: 'Apartamento Residencial Palmas \u2013 Piso 2',
         location: 'El Parnaso, Piedecuesta',
-        price: '$215.000.000 COP', area: '60 mÂ&#178;', status: 'construccion',
-        img: 'images/pkg_render_virtual.png'
+        price: '$215.000.000 COP', area: '60 m\u00b2', status: 'construccion',
+        mediaUrl: 'images/pkg_render_virtual.png', mediaType: 'image'
       },
       {
         id: 'prop-4', type: 'apartamento', typeLabel: 'Apartamento',
         name: 'Apartamento Ciudad Jardin - Piso 4',
         location: 'Ciudadela Real de Minas, Piedecuesta',
-        price: '$240.000.000 COP', area: '65 m&#178;', status: 'venta',
-        img: 'images/pkg_render_basic.png'
+        price: '$240.000.000 COP', area: '65 m\u00b2', status: 'venta',
+        mediaUrl: 'images/pkg_render_basic.png', mediaType: 'image'
       },
       {
         id: 'prop-5', type: 'apartamento', typeLabel: 'Apartamento',
         name: 'Apartamento Mirador Santander - Piso 6',
         location: 'Av. El Libertador, Piedecuesta',
-        price: '$310.000.000 COP', area: '80 m&#178;', status: 'venta',
-        img: 'images/service_rebranding.png'
+        price: '$310.000.000 COP', area: '80 m\u00b2', status: 'venta',
+        mediaUrl: 'images/service_rebranding.png', mediaType: 'image'
       },
       {
         id: 'prop-6', type: 'apartamento', typeLabel: 'Apartamento',
-        name: 'Apartamento Reserva del Parque ”“ Piso 5',
+        name: 'Apartamento Reserva del Parque \u2013 Piso 5',
         location: 'Ciudadela Real de Minas, Piedecuesta',
-        price: '$255.000.000 COP', area: '68 mÂ&#178;', status: 'vendido',
-        img: 'images/service_webdesign.png'
+        price: '$255.000.000 COP', area: '68 m\u00b2', status: 'vendido',
+        mediaUrl: 'images/service_webdesign.png', mediaType: 'image'
       }
     ];
 
     const STATUS_CLASSES = {
       venta: { cls: 'badge-venta', label: 'En venta' },
-      construccion: { cls: 'badge-construccion', label: 'En construcción' },
+      construccion: { cls: 'badge-construccion', label: 'En construcci\u00f3n' },
       vendido: { cls: 'badge-vendido', label: 'Vendido' }
     };
 
-    function getAllProperties() {
-      const custom = JSON.parse(localStorage.getItem('ikar_props') || '[]');
-      const deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
-      return [...BASE_PROPERTIES.filter(p => !deleted.includes(p.id)), ...custom];
-    }
-    function getCustomProperties() { return JSON.parse(localStorage.getItem('ikar_props') || '[]'); }
-    function saveCustomProperties(arr) { localStorage.setItem('ikar_props', JSON.stringify(arr)); }
-
     // ============================================================
-    // RENDER CATÁLOGO
+    // ESTADO GLOBAL
     // ============================================================
+    let customProperties = [];
+    let deletedBaseIds = [];
     let currentFilter = 'all';
+    let _uploadedFile = null;
+    let _uploadedMediaType = 'image';
 
+    // Firebase handles
+    let db = null;
+    let fbStorage = null;
+    let firebaseReady = false;
+
+    // ============================================================
+    // INIT FIREBASE
+    // ============================================================
+    (function initFirebase() {
+      try {
+        if (FIREBASE_CONFIG.projectId === 'YOUR_PROJECT_ID') {
+          console.warn('Firebase no configurado. Usando localStorage.');
+          loadFromLocalStorage();
+          return;
+        }
+        firebase.initializeApp(FIREBASE_CONFIG);
+        db = firebase.firestore();
+        fbStorage = firebase.storage();
+        firebaseReady = true;
+        setupFirestoreListeners();
+      } catch (e) {
+        console.error('Error Firebase:', e);
+        loadFromLocalStorage();
+      }
+    })();
+
+    function loadFromLocalStorage() {
+      customProperties = JSON.parse(localStorage.getItem('ikar_props') || '[]');
+      deletedBaseIds = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
+      renderCatalog(currentFilter);
+    }
+
+    // ============================================================
+    // FIRESTORE LISTENERS — sincronización en tiempo real
+    // ============================================================
+    function setupFirestoreListeners() {
+      // Escucha propiedades custom
+      db.collection('catalog').onSnapshot(function(snapshot) {
+        customProperties = [];
+        snapshot.forEach(function(doc) {
+          customProperties.push(Object.assign({ firestoreId: doc.id }, doc.data()));
+        });
+        renderCatalog(currentFilter);
+        var dash = document.getElementById('admin-dashboard');
+        if (dash && !dash.classList.contains('hidden')) renderAdminList();
+      }, function(err) { console.error('Error catalog listener:', err); });
+
+      // Escucha IDs eliminadas de base
+      db.collection('settings').doc('catalog').onSnapshot(function(doc) {
+        deletedBaseIds = doc.exists ? (doc.data().deletedIds || []) : [];
+        renderCatalog(currentFilter);
+      }, function(err) { console.error('Error settings listener:', err); });
+    }
+
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    function getAllProperties() {
+      return [
+        ...BASE_PROPERTIES.filter(function(p) { return !deletedBaseIds.includes(p.id); }),
+        ...customProperties
+      ];
+    }
+
+    // ============================================================
+    // RENDER CATÁLOGO (con soporte de video)
+    // ============================================================
     function renderCatalog(filter) {
       currentFilter = filter;
-      const grid = document.getElementById('catalog-grid');
-      const items = getAllProperties().filter(p => filter === 'all' || p.type === filter);
+      var grid = document.getElementById('catalog-grid');
+      var items = getAllProperties().filter(function(p) { return filter === 'all' || p.type === filter; });
       if (!items.length) {
-        grid.innerHTML = '<div class="col-span-3 text-center text-white/40 py-16">No hay propiedades en esta categoría.</div>';
+        grid.innerHTML = '<div class="col-span-3 text-center text-white/40 py-16">No hay propiedades en esta categor\u00eda.</div>';
         return;
       }
-      grid.innerHTML = items.map(p => {
-        const st = STATUS_CLASSES[p.status] || STATUS_CLASSES.venta;
-        const btnDisabled = p.status === 'vendido';
-        return `
-    <div class="prop-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group">
-      <div class="relative h-48 overflow-hidden">
-        <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-carbon-3" onerror="this.src='images/hero.png'"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        <div class="absolute top-3 right-3">
-          <span class="text-xs font-bold px-3 py-1 rounded-full ${st.cls}">${st.label}</span>
-        </div>
-        <div class="absolute bottom-3 left-4">
-          <span class="bg-white/15 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">${p.typeLabel}</span>
-        </div>
-      </div>
-      <div class="p-6">
-        <h3 class="font-black text-white text-base mb-1 leading-tight">${p.name}</h3>
-        <div class="flex items-center gap-1 text-white/50 text-xs mb-4">
-          <svg class="w-3.5 h-3.5 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-          ${p.location}
-        </div>
-        <div class="flex items-center gap-4 mb-5">
-          <div class="flex items-center gap-1.5 text-white/60 text-xs">
-            <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
-            ${p.area}
-          </div>
-        </div>
-        <div class="flex items-center justify-between pt-4 border-t border-white/5">
-          <div>
-            <div class="text-white/40 text-xs mb-0.5">Precio</div>
-            <div class="text-xl font-black text-white">${p.price}</div>
-          </div>
-          ${btnDisabled
-            ? `<span class="bg-white/8 text-white/40 text-xs font-semibold px-4 py-2.5 rounded-xl">No disponible</span>`
-            : `<a href="https://wa.me/573164298990?text=Hola%20IKAR%2C%20quiero%20ver%20${encodeURIComponent(p.name)}" target="_blank"
-                class="bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-orange-900/30">
-                Ver detalles
-               </a>`
-          }
-        </div>
-      </div>
-    </div>`;
+      grid.innerHTML = items.map(function(p) {
+        var st = STATUS_CLASSES[p.status] || STATUS_CLASSES.venta;
+        var btnDisabled = p.status === 'vendido';
+        var mediaHtml = (p.mediaType === 'video')
+          ? '<video src="' + (p.mediaUrl || '') + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-carbon-3" autoplay muted loop playsinline></video>'
+          : '<img src="' + (p.mediaUrl || p.img || 'images/hero.png') + '" alt="' + p.name + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-carbon-3" onerror="this.src=\'images/hero.png\'"/>';
+        return '<div class="prop-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group">' +
+          '<div class="relative h-48 overflow-hidden">' + mediaHtml +
+          '<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>' +
+          '<div class="absolute top-3 right-3"><span class="text-xs font-bold px-3 py-1 rounded-full ' + st.cls + '">' + st.label + '</span></div>' +
+          '<div class="absolute bottom-3 left-4"><span class="bg-white/15 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">' + p.typeLabel + '</span></div>' +
+          '</div><div class="p-6">' +
+          '<h3 class="font-black text-white text-base mb-1 leading-tight">' + p.name + '</h3>' +
+          '<div class="flex items-center gap-1 text-white/50 text-xs mb-4">' +
+          '<svg class="w-3.5 h-3.5 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>' +
+          p.location + '</div>' +
+          '<div class="flex items-center gap-4 mb-5">' +
+          '<div class="flex items-center gap-1.5 text-white/60 text-xs">' +
+          '<svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>' +
+          p.area + '</div></div>' +
+          '<div class="flex items-center justify-between pt-4 border-t border-white/5">' +
+          '<div><div class="text-white/40 text-xs mb-0.5">Precio</div><div class="text-xl font-black text-white">' + p.price + '</div></div>' +
+          (btnDisabled
+            ? '<span class="bg-white/8 text-white/40 text-xs font-semibold px-4 py-2.5 rounded-xl">No disponible</span>'
+            : '<a href="https://wa.me/573164298990?text=Hola%20IKAR%2C%20quiero%20ver%20' + encodeURIComponent(p.name) + '" target="_blank" class="bg-orange-600 hover:bg-orange-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all hover:-translate-y-0.5 shadow-lg shadow-orange-900/30">Ver detalles</a>'
+          ) +
+          '</div></div></div>';
       }).join('');
-      document.querySelectorAll('#catalog-grid .reveal').forEach(el => {
+      document.querySelectorAll('#catalog-grid .reveal').forEach(function(el) {
         el.classList.remove('visible');
         revealObserver.observe(el);
       });
     }
 
     function filterItems(type, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       renderCatalog(type);
     }
 
     // ============================================================
-    // ADMIN ”“ códigos: 8579=William | 8580=Luz Carime
+    // ADMIN — códigos
     // ============================================================
     const ADMIN_CODES = { '1701': 'William', '425196': 'Luz Carime' };
 
     function openAdminModal() {
       document.getElementById('admin-modal').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
-      const user = sessionStorage.getItem('ikar_admin');
+      var user = sessionStorage.getItem('ikar_admin');
       if (user) { showAdminDashboard(user); }
       else {
         document.getElementById('admin-login').classList.remove('hidden');
         document.getElementById('admin-dashboard').classList.add('hidden');
-        setTimeout(() => document.getElementById('admin-code-input').focus(), 100);
+        setTimeout(function() { document.getElementById('admin-code-input').focus(); }, 100);
       }
     }
     function closeAdminModal() {
       document.getElementById('admin-modal').classList.add('hidden');
       document.body.style.overflow = '';
     }
-    function clearAdminError() { document.getElementById('admin-error').classList.add('hidden'); }
     function verifyAdminCode() {
-      const code = document.getElementById('admin-code-input').value.trim();
-      const user = ADMIN_CODES[code];
+      var code = document.getElementById('admin-code-input').value.trim();
+      var user = ADMIN_CODES[code];
       if (user) {
         sessionStorage.setItem('ikar_admin', user);
         document.getElementById('admin-code-input').value = '';
@@ -1178,69 +1279,76 @@
     function showAdminDashboard(user) {
       document.getElementById('admin-login').classList.add('hidden');
       document.getElementById('admin-dashboard').classList.remove('hidden');
-      document.getElementById('admin-welcome').textContent = `Bienvenido, ${user}`;
+      document.getElementById('admin-welcome').textContent = 'Bienvenido, ' + user;
       renderAdminList();
     }
     function renderAdminList() {
-      const all = getAllProperties();
-      // All properties are deletable
-      document.getElementById('admin-prop-list').innerHTML = all.map(p => `
-    <div class="flex items-center justify-between bg-black/30 border border-white/5 rounded-xl px-4 py-3 gap-3">
-      <div class="flex-1 min-w-0">
-        <div class="font-semibold text-white text-sm truncate">${p.name}</div>
-        <div class="text-xs text-white/40">${p.typeLabel} · <span class="text-orange-400 font-bold">${p.price}</span> · ${p.area}</div>
-      </div>
-      <div class="flex items-center gap-2 flex-shrink-0">
-        <button onclick="deleteProperty('${p.id}')" class="text-xs bg-red-900/40 hover:bg-red-600 text-red-400 hover:text-white px-3 py-1.5 rounded-lg transition-all font-semibold">Eliminar</button>
-      </div>
-    </div>`).join('');
+      var all = getAllProperties();
+      document.getElementById('admin-prop-list').innerHTML = all.map(function(p) {
+        var mediaIcon = p.mediaType === 'video'
+          ? '<span class="text-xs bg-blue-900/40 text-blue-300 px-2 py-0.5 rounded font-semibold mr-1">VIDEO</span>'
+          : '';
+        return '<div class="flex items-center justify-between bg-black/30 border border-white/5 rounded-xl px-4 py-3 gap-3">' +
+          '<div class="flex-1 min-w-0">' +
+          '<div class="font-semibold text-white text-sm truncate">' + mediaIcon + p.name + '</div>' +
+          '<div class="text-xs text-white/40">' + p.typeLabel + ' \u00b7 <span class="text-orange-400 font-bold">' + p.price + '</span> \u00b7 ' + p.area + '</div>' +
+          '</div><div class="flex items-center gap-2 flex-shrink-0">' +
+          '<button onclick="deleteProperty(\'' + p.id + '\',\'' + (p.firestoreId || '') + '\')" class="text-xs bg-red-900/40 hover:bg-red-600 text-red-400 hover:text-white px-3 py-1.5 rounded-lg transition-all font-semibold">Eliminar</button>' +
+          '</div></div>';
+      }).join('');
     }
-// ============================================================
-    // UPLOAD HELPERS
-    // ============================================================
-    let _uploadedImgData = null;
 
+    // ============================================================
+    // UPLOAD HELPERS (imagen + video)
+    // ============================================================
     function previewUpload(input) {
-      const file = input.files[0];
+      var file = input.files[0];
       if (!file) return;
-      if (file.size > 5 * 1024 * 1024) {
-        alert('La foto es muy grande. Maximo 5 MB.');
-        input.value = '';
-        return;
+      _uploadedFile = file;
+      _uploadedMediaType = file.type.startsWith('video/') ? 'video' : 'image';
+
+      var imgWrap = document.getElementById('img-preview-wrap');
+      var vidWrap = document.getElementById('vid-preview-wrap');
+      imgWrap.classList.add('hidden');
+      vidWrap.classList.add('hidden');
+
+      var url = URL.createObjectURL(file);
+      if (_uploadedMediaType === 'video') {
+        document.getElementById('vid-preview').src = url;
+        vidWrap.classList.remove('hidden');
+      } else {
+        document.getElementById('img-preview').src = url;
+        imgWrap.classList.remove('hidden');
       }
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        _uploadedImgData = e.target.result;
-        document.getElementById('img-preview').src = _uploadedImgData;
-        document.getElementById('img-preview-wrap').classList.remove('hidden');
-        document.getElementById('upload-label').innerHTML =
-          '<span class="text-orange-400 font-semibold">' + file.name + '</span><br/><span class="text-white/25">Foto cargada correctamente</span>';
-      };
-      reader.readAsDataURL(file);
+      document.getElementById('upload-label').innerHTML =
+        '<span class="text-orange-400 font-semibold">' + file.name + '</span><br/><span class="text-white/25">Archivo cargado correctamente</span>';
     }
 
     function clearUpload() {
-      _uploadedImgData = null;
+      _uploadedFile = null;
+      _uploadedMediaType = 'image';
       document.getElementById('ap-img-file').value = '';
       document.getElementById('img-preview').src = '';
+      document.getElementById('vid-preview').src = '';
       document.getElementById('img-preview-wrap').classList.add('hidden');
+      document.getElementById('vid-preview-wrap').classList.add('hidden');
       document.getElementById('upload-label').innerHTML =
-        'Haz clic o arrastra una foto aqui<br/><span class="text-white/25">JPG, PNG, WEBP - max. 5 MB</span>';
+        'Haz clic o arrastra una foto o video aqu\u00ed<br/><span class="text-white/25">JPG, PNG, WEBP, MP4, MOV &mdash; m\u00e1x. 100 MB</span>';
     }
 
-    // Drag and drop support for upload zone
+    // Drag & drop
     document.addEventListener('DOMContentLoaded', function() {
-      const zone = document.getElementById('upload-zone');
+      var zone = document.getElementById('upload-zone');
       if (!zone) return;
       zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('border-orange-500'); });
       zone.addEventListener('dragleave', function() { zone.classList.remove('border-orange-500'); });
       zone.addEventListener('drop', function(e) {
         e.preventDefault();
         zone.classList.remove('border-orange-500');
-        const file = e.dataTransfer.files[0];
-        if (file && file.type.startsWith('image/')) {
-          const input = document.getElementById('ap-img-file');
-          const dt = new DataTransfer();
+        var file = e.dataTransfer.files[0];
+        if (file && (file.type.startsWith('image/') || file.type.startsWith('video/'))) {
+          var input = document.getElementById('ap-img-file');
+          var dt = new DataTransfer();
           dt.items.add(file);
           input.files = dt.files;
           previewUpload(input);
@@ -1248,60 +1356,132 @@
       });
     });
 
-    function addProperty() {
-      const name = document.getElementById('ap-name').value.trim();
-      const type = document.getElementById('ap-type').value;
-      const location = document.getElementById('ap-location').value.trim();
-      const price = document.getElementById('ap-price').value.trim();
-      const area = document.getElementById('ap-area').value.trim();
-      const status = document.getElementById('ap-status').value;
+    // ============================================================
+    // ADD PROPERTY (async, Firebase Storage + Firestore)
+    // ============================================================
+    async function addProperty() {
+      var name = document.getElementById('ap-name').value.trim();
+      var type = document.getElementById('ap-type').value;
+      var location = document.getElementById('ap-location').value.trim();
+      var price = document.getElementById('ap-price').value.trim();
+      var area = document.getElementById('ap-area').value.trim();
+      var status = document.getElementById('ap-status').value;
+
       if (!name || !price) { alert('Nombre y precio son obligatorios.'); return; }
-      if (!_uploadedImgData) { alert('Por favor selecciona una foto para el proyecto.'); return; }
-      const typeLabels = { apartamento: 'Apartamento' };
-      const newProp = {
-        id: 'custom-' + Date.now(),
-        type: type,
-        typeLabel: typeLabels[type] || 'Apartamento',
-        name: name,
-        location: location || 'Piedecuesta',
-        price: price,
-        area: area || '-',
-        status: status,
-        img: _uploadedImgData,
-        custom: true
-      };
-      const custom = getCustomProperties();
-      custom.push(newProp);
-      saveCustomProperties(custom);
-      ['ap-name', 'ap-location', 'ap-price', 'ap-area'].forEach(function(id) { document.getElementById(id).value = ''; });
-      clearUpload();
-      document.getElementById('ap-success').classList.remove('hidden');
-      setTimeout(function() { document.getElementById('ap-success').classList.add('hidden'); }, 3000);
-      renderAdminList();
-      renderCatalog(currentFilter);
-    }
-    function deleteProperty(id) {
-      if (!confirm('¿Eliminar esta propiedad?')) return;
-      const isBase = BASE_PROPERTIES.some(p => p.id === id);
-      if (isBase) {
-        const deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
-        if (!deleted.includes(id)) deleted.push(id);
-        localStorage.setItem('ikar_deleted', JSON.stringify(deleted));
-      } else {
-        saveCustomProperties(getCustomProperties().filter(p => p.id !== id));
+      if (!_uploadedFile) { alert('Por favor selecciona una foto o video para el proyecto.'); return; }
+
+      var btn = document.querySelector('button[onclick="addProperty()"]');
+      btn.disabled = true;
+      btn.textContent = 'Publicando\u2026';
+
+      try {
+        var mediaUrl = '';
+        var propId = 'custom-' + Date.now();
+
+        if (firebaseReady) {
+          // Subir archivo a Firebase Storage
+          var storagePath = 'catalog/' + propId + '_' + _uploadedFile.name;
+          var fileRef = fbStorage.ref().child(storagePath);
+          var uploadSnap = await fileRef.put(_uploadedFile);
+          mediaUrl = await uploadSnap.ref.getDownloadURL();
+        } else {
+          // Fallback: base64 en localStorage
+          mediaUrl = await new Promise(function(resolve) {
+            var reader = new FileReader();
+            reader.onload = function(e) { resolve(e.target.result); };
+            reader.readAsDataURL(_uploadedFile);
+          });
+        }
+
+        var typeLabels = { apartamento: 'Apartamento' };
+        var newProp = {
+          id: propId,
+          type: type,
+          typeLabel: typeLabels[type] || 'Apartamento',
+          name: name,
+          location: location || 'Piedecuesta',
+          price: price,
+          area: area || '-',
+          status: status,
+          mediaUrl: mediaUrl,
+          mediaType: _uploadedMediaType,
+          custom: true,
+          timestamp: firebaseReady ? firebase.firestore.FieldValue.serverTimestamp() : Date.now()
+        };
+
+        if (firebaseReady) {
+          await db.collection('catalog').doc(propId).set(newProp);
+          // onSnapshot actualiza automáticamente el catálogo en todos los dispositivos
+        } else {
+          var saved = JSON.parse(localStorage.getItem('ikar_props') || '[]');
+          saved.push(newProp);
+          localStorage.setItem('ikar_props', JSON.stringify(saved));
+          customProperties = saved;
+          renderCatalog(currentFilter);
+          renderAdminList();
+        }
+
+        // Limpiar formulario
+        ['ap-name', 'ap-location', 'ap-price', 'ap-area'].forEach(function(id) {
+          document.getElementById(id).value = '';
+        });
+        clearUpload();
+        var successMsg = document.getElementById('ap-success');
+        successMsg.classList.remove('hidden');
+        setTimeout(function() { successMsg.classList.add('hidden'); }, 3000);
+
+      } catch (e) {
+        console.error('Error al publicar:', e);
+        alert('Error al publicar. Revisa tu conexión e intenta de nuevo.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Guardar Propiedad';
       }
-      renderAdminList();
-      renderCatalog(currentFilter);
+    }
+
+    // ============================================================
+    // DELETE PROPERTY
+    // ============================================================
+    async function deleteProperty(id, firestoreId) {
+      if (!confirm('\u00bfEliminar esta propiedad?')) return;
+      var isBase = BASE_PROPERTIES.some(function(p) { return p.id === id; });
+
+      if (firebaseReady) {
+        if (isBase) {
+          await db.collection('settings').doc('catalog').set(
+            { deletedIds: firebase.firestore.FieldValue.arrayUnion(id) },
+            { merge: true }
+          );
+        } else {
+          var docId = firestoreId || id;
+          await db.collection('catalog').doc(docId).delete();
+        }
+        // onSnapshot dispara la actualización en todos los dispositivos
+      } else {
+        if (isBase) {
+          var deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
+          if (!deleted.includes(id)) deleted.push(id);
+          localStorage.setItem('ikar_deleted', JSON.stringify(deleted));
+          deletedBaseIds = deleted;
+        } else {
+          var saved = JSON.parse(localStorage.getItem('ikar_props') || '[]');
+          saved = saved.filter(function(p) { return p.id !== id; });
+          localStorage.setItem('ikar_props', JSON.stringify(saved));
+          customProperties = saved;
+        }
+        renderCatalog(currentFilter);
+        renderAdminList();
+      }
     }
 
     // Close on backdrop
-    document.getElementById('admin-modal').addEventListener('click', function (e) { if (e.target === this) closeAdminModal(); });
-    document.getElementById('admin-code-input').addEventListener('keydown', e => { if (e.key === 'Enter') verifyAdminCode(); });
+    document.getElementById('admin-modal').addEventListener('click', function(e) { if (e.target === this) closeAdminModal(); });
+    document.getElementById('admin-code-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') verifyAdminCode(); });
 
     // ============================================================
     // NAVBAR SCROLL
     // ============================================================
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', function() {
       document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
     });
 
@@ -1314,30 +1494,32 @@
     // ============================================================
     // SCROLL REVEAL
     // ============================================================
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+    const revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
 
     // ============================================================
     // CONTACT FORM
     // ============================================================
     function submitContactForm(e) {
       e.preventDefault();
-      const name = document.getElementById('cf-name').value;
-      const email = document.getElementById('cf-email').value;
-      const service = document.getElementById('cf-service').value;
-      const message = document.getElementById('cf-message').value;
-      const text = `Hola IKAR! Soy ${name} (${email}). ${service ? 'Me interesa: ' + service + '.' : ''} ${message}`;
+      var name = document.getElementById('cf-name').value;
+      var email = document.getElementById('cf-email').value;
+      var service = document.getElementById('cf-service').value;
+      var message = document.getElementById('cf-message').value;
+      var text = 'Hola IKAR! Soy ' + name + ' (' + email + '). ' + (service ? 'Me interesa: ' + service + '.' : '') + ' ' + message;
       document.getElementById('form-success').classList.remove('hidden');
       document.getElementById('contact-form').reset();
-      setTimeout(() => window.open(`https://wa.me/573164298990?text=${encodeURIComponent(text)}`, '_blank'), 800);
+      setTimeout(function() { window.open('https://wa.me/573164298990?text=' + encodeURIComponent(text), '_blank'); }, 800);
     }
 
     // ============================================================
     // INIT
     // ============================================================
-    document.addEventListener('DOMContentLoaded', () => { renderCatalog('all'); });
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!firebaseReady) renderCatalog('all');
+    });
   </script>
 </body>
 
