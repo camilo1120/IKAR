@@ -633,6 +633,10 @@
           onclick="filterItems('all',this)">Todos</button>
         <button class="filter-btn border border-white/20 text-white/60 text-sm font-semibold px-5 py-2.5 rounded-full"
           onclick="filterItems('apartamento',this)">Apartamentos</button>
+        <button class="filter-btn border border-white/20 text-white/60 text-sm font-semibold px-5 py-2.5 rounded-full"
+          onclick="filterItems('edificio',this)">Edificios</button>
+        <button class="filter-btn border border-white/20 text-white/60 text-sm font-semibold px-5 py-2.5 rounded-full"
+          onclick="filterItems('lote',this)">Lotes</button>
       </div>
       <!-- Grid -->
       <div id="catalog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -955,8 +959,10 @@
           </button>
         </div>
         <div class="p-6 max-h-[75vh] overflow-y-auto">
+          <!-- Banner modo almacenamiento -->
+          <div id="storage-banner" class="mb-4 text-xs rounded-xl px-4 py-3 border font-semibold"></div>
           <div class="bg-black/30 border border-white/8 rounded-2xl p-5 mb-6">
-            <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wide">âž• Agregar Propiedad</h4>
+            <h4 id="admin-form-title" class="font-bold text-white mb-4 text-sm uppercase tracking-wide">&#10133; Agregar Propiedad</h4>
             <div class="grid grid-cols-2 gap-3 mb-3">
               <div>
                 <label class="text-xs font-semibold text-white/50 mb-1 block">Nombre del proyecto</label>
@@ -968,6 +974,8 @@
                 <select id="ap-type"
                   class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white">
                   <option value="apartamento">Apartamento</option>
+                  <option value="edificio">Edificio</option>
+                  <option value="lote">Lote</option>
                 </select>
               </div>
             </div>
@@ -1031,10 +1039,16 @@
                 </button>
               </div>
             </div>
-            <button onclick="addProperty()"
-              class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all">
-              Guardar Propiedad
-            </button>
+            <div class="flex gap-2">
+              <button onclick="addProperty()"
+                class="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-lg text-sm transition-all">
+                Guardar Propiedad
+              </button>
+              <button id="btn-cancel-edit" onclick="cancelEdit()" style="display:none"
+                class="bg-white/10 hover:bg-white/20 text-white/70 font-bold py-2.5 px-4 rounded-lg text-sm transition-all">
+                Cancelar
+              </button>
+            </div>
             <p id="ap-success" class="hidden text-green-400 text-xs text-center mt-2">âœ… Propiedad agregada
               correctamente</p>
           </div>
@@ -1047,23 +1061,37 @@
     </div>
   </div>
 
-  <!-- Firebase SDKs -->
+  <!-- Firebase SDK (solo Firestore, NO Storage) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
 
   <script>
     // ============================================================
-    // FIREBASE CONFIG — Reemplaza con tu configuración de Firebase
+    //  CONFIGURACIÓN — RELLENA CON TUS DATOS
+    // ============================================================
+    //
+    //  PASO 1 ▸ Firebase Firestore (base de datos, GRATIS)
+    //    Ve a https://console.firebase.google.com → tu proyecto
+    //    → Configuración → tus apps → copia los valores de abajo.
+    //
+    //  PASO 2 ▸ Cloudinary (fotos y videos, GRATIS 25 GB)
+    //    1. Crea cuenta en https://cloudinary.com (es gratis)
+    //    2. Ve a Settings → Upload → Add upload preset
+    //    3. Modo: Unsigned  →  guarda el preset name
+    //    4. Copia tu Cloud Name desde el Dashboard
+    //
     // ============================================================
     const FIREBASE_CONFIG = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
       projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
       messagingSenderId: "YOUR_SENDER_ID",
       appId: "YOUR_APP_ID"
     };
+
+    // Cloudinary (deja vacío si aún no tienes cuenta; usará localStorage)
+    const CLOUDINARY_CLOUD_NAME = '';   // ej: 'mi-empresa-ikar'
+    const CLOUDINARY_UPLOAD_PRESET = ''; // ej: 'ikar_unsigned'
 
     // ============================================================
     // CATÁLOGO BASE (propiedades fijas)
@@ -1127,14 +1155,17 @@
     let currentFilter = 'all';
     let _uploadedFile = null;
     let _uploadedMediaType = 'image';
+    let _editingId = null; // ID de la propiedad que se está editando
 
-    // Firebase handles
+    // Cloudinary disponible si ambas variables están configuradas
+    const cloudinaryReady = CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET;
+
+    // Firebase handle
     let db = null;
-    let fbStorage = null;
     let firebaseReady = false;
 
     // ============================================================
-    // INIT FIREBASE
+    // INIT FIREBASE (solo Firestore, sin Storage)
     // ============================================================
     (function initFirebase() {
       try {
@@ -1145,7 +1176,6 @@
         }
         firebase.initializeApp(FIREBASE_CONFIG);
         db = firebase.firestore();
-        fbStorage = firebase.storage();
         firebaseReady = true;
         setupFirestoreListeners();
       } catch (e) {
@@ -1280,19 +1310,43 @@
       document.getElementById('admin-login').classList.add('hidden');
       document.getElementById('admin-dashboard').classList.remove('hidden');
       document.getElementById('admin-welcome').textContent = 'Bienvenido, ' + user;
+      // Banner de modo almacenamiento
+      var banner = document.getElementById('storage-banner');
+      if (cloudinaryReady && firebaseReady) {
+        banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-green-900/30 border-green-700/40 text-green-400';
+        banner.innerHTML = '&#9989; Modo completo: Cloudinary (fotos/videos) + Firestore (datos). Los cambios se ven en tiempo real para todos.';
+      } else if (firebaseReady && !cloudinaryReady) {
+        banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-yellow-900/30 border-yellow-700/40 text-yellow-400';
+        banner.innerHTML = '&#9888;&#65039; Modo parcial: Firestore activo. Las imágenes se guardan como base64 (sin Cloudinary). <strong>Para subir videos grandes, configura Cloudinary.</strong>';
+      } else if (cloudinaryReady && !firebaseReady) {
+        banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-yellow-900/30 border-yellow-700/40 text-yellow-400';
+        banner.innerHTML = '&#9888;&#65039; Modo parcial: Cloudinary activo. Los datos se guardan en este dispositivo (localStorage). Configura Firebase Firestore para sincronizar con todos.';
+      } else {
+        banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-red-900/30 border-red-700/40 text-red-400';
+        banner.innerHTML = '&#9888;&#65039; Modo demo (solo este dispositivo). Configura Firebase + Cloudinary para publicar a todos los usuarios.';
+      }
       renderAdminList();
     }
     function renderAdminList() {
       var all = getAllProperties();
+      if (!all.length) {
+        document.getElementById('admin-prop-list').innerHTML =
+          '<div class="text-white/30 text-sm text-center py-6">No hay propiedades aún.</div>';
+        return;
+      }
       document.getElementById('admin-prop-list').innerHTML = all.map(function(p) {
         var mediaIcon = p.mediaType === 'video'
           ? '<span class="text-xs bg-blue-900/40 text-blue-300 px-2 py-0.5 rounded font-semibold mr-1">VIDEO</span>'
           : '';
-        return '<div class="flex items-center justify-between bg-black/30 border border-white/5 rounded-xl px-4 py-3 gap-3">' +
+        var customTag = p.custom
+          ? '<span class="text-xs bg-orange-900/30 text-orange-400 px-2 py-0.5 rounded font-semibold mr-1">CUSTOM</span>'
+          : '<span class="text-xs bg-white/10 text-white/40 px-2 py-0.5 rounded font-semibold mr-1">BASE</span>';
+        return '<div class="flex items-center justify-between bg-black/30 border border-white/5 rounded-xl px-4 py-3 gap-3 mb-2">' +
           '<div class="flex-1 min-w-0">' +
-          '<div class="font-semibold text-white text-sm truncate">' + mediaIcon + p.name + '</div>' +
+          '<div class="font-semibold text-white text-sm truncate">' + customTag + mediaIcon + p.name + '</div>' +
           '<div class="text-xs text-white/40">' + p.typeLabel + ' \u00b7 <span class="text-orange-400 font-bold">' + p.price + '</span> \u00b7 ' + p.area + '</div>' +
           '</div><div class="flex items-center gap-2 flex-shrink-0">' +
+          '<button onclick="editProperty(\'' + p.id + '\',\'' + (p.firestoreId || '') + '\')" class="text-xs bg-navy/60 hover:bg-navy text-white/70 hover:text-white px-3 py-1.5 rounded-lg transition-all font-semibold">\u270F\uFE0F Editar</button>' +
           '<button onclick="deleteProperty(\'' + p.id + '\',\'' + (p.firestoreId || '') + '\')" class="text-xs bg-red-900/40 hover:bg-red-600 text-red-400 hover:text-white px-3 py-1.5 rounded-lg transition-all font-semibold">Eliminar</button>' +
           '</div></div>';
       }).join('');
@@ -1357,7 +1411,106 @@
     });
 
     // ============================================================
-    // ADD PROPERTY (async, Firebase Storage + Firestore)
+    // SUBIDA DE MEDIA — Cloudinary (gratis) o base64 localStorage
+    // ============================================================
+    async function uploadMedia(file, propId) {
+      // Opcion 1: Cloudinary (configurado)
+      if (cloudinaryReady && file.type.startsWith('image/')) {
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+        formData.append('public_id', 'ikar_catalog_' + propId);
+        var res = await fetch('https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD_NAME + '/image/upload', {
+          method: 'POST',
+          body: formData
+        });
+        if (!res.ok) throw new Error('Error al subir a Cloudinary: ' + res.statusText);
+        var data = await res.json();
+        return { url: data.secure_url, type: 'image' };
+      }
+      if (cloudinaryReady && file.type.startsWith('video/')) {
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+        formData.append('public_id', 'ikar_catalog_' + propId);
+        var res = await fetch('https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD_NAME + '/video/upload', {
+          method: 'POST',
+          body: formData
+        });
+        if (!res.ok) throw new Error('Error al subir video a Cloudinary: ' + res.statusText);
+        var data = await res.json();
+        return { url: data.secure_url, type: 'video' };
+      }
+      // Opcion 2: base64 en Firestore / localStorage (sin cuenta Cloudinary)
+      var base64 = await new Promise(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function(e) { resolve(e.target.result); };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+      return { url: base64, type: file.type.startsWith('video/') ? 'video' : 'image' };
+    }
+
+    // ============================================================
+    // EDIT MODE — cargar datos de una propiedad al formulario
+    // ============================================================
+    function editProperty(id, firestoreId) {
+      var all = getAllProperties();
+      var prop = all.find(function(p) { return p.id === id || p.firestoreId === firestoreId; });
+      if (!prop) return;
+      _editingId = { id: id, firestoreId: firestoreId || id, isBase: BASE_PROPERTIES.some(function(p) { return p.id === id; }) };
+
+      document.getElementById('ap-name').value = prop.name || '';
+      document.getElementById('ap-location').value = prop.location || '';
+      document.getElementById('ap-price').value = prop.price || '';
+      document.getElementById('ap-area').value = prop.area || '';
+      document.getElementById('ap-type').value = prop.type || 'apartamento';
+      document.getElementById('ap-status').value = prop.status || 'venta';
+
+      var btn = document.querySelector('button[onclick="addProperty()"]');
+      btn.textContent = '\u270F\uFE0F Guardar Cambios';
+      btn.style.background = '#003366';
+      document.getElementById('admin-form-title').textContent = '\u270F\uFE0F Editando: ' + prop.name;
+      document.getElementById('btn-cancel-edit').style.display = '';
+
+      // Mostrar imagen actual
+      if (prop.mediaUrl) {
+        if (prop.mediaType === 'video') {
+          document.getElementById('vid-preview').src = prop.mediaUrl;
+          document.getElementById('vid-preview-wrap').classList.remove('hidden');
+          document.getElementById('img-preview-wrap').classList.add('hidden');
+        } else {
+          document.getElementById('img-preview').src = prop.mediaUrl;
+          document.getElementById('img-preview-wrap').classList.remove('hidden');
+          document.getElementById('vid-preview-wrap').classList.add('hidden');
+        }
+        _uploadedMediaType = prop.mediaType || 'image';
+      }
+      document.getElementById('upload-label').innerHTML =
+        '<span class="text-orange-400 font-semibold">Archivo actual cargado</span><br/><span class="text-white/25">Sube uno nuevo para reemplazarlo</span>';
+
+      document.getElementById('ap-success').classList.add('hidden');
+      // Scroll al formulario dentro del panel
+      document.querySelector('#admin-dashboard .p-6').scrollTop = 0;
+    }
+
+    function cancelEdit() {
+      _editingId = null;
+      ['ap-name', 'ap-location', 'ap-price', 'ap-area'].forEach(function(id) {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('ap-type').value = 'apartamento';
+      document.getElementById('ap-status').value = 'venta';
+      clearUpload();
+      var btn = document.querySelector('button[onclick="addProperty()"]');
+      btn.textContent = 'Guardar Propiedad';
+      btn.style.background = '';
+      document.getElementById('admin-form-title').textContent = '\u2795 Agregar Propiedad';
+      document.getElementById('btn-cancel-edit').style.display = 'none';
+    }
+
+    // ============================================================
+    // ADD / EDIT PROPERTY — Cloudinary para media, Firestore para datos
     // ============================================================
     async function addProperty() {
       var name = document.getElementById('ap-name').value.trim();
@@ -1368,32 +1521,32 @@
       var status = document.getElementById('ap-status').value;
 
       if (!name || !price) { alert('Nombre y precio son obligatorios.'); return; }
-      if (!_uploadedFile) { alert('Por favor selecciona una foto o video para el proyecto.'); return; }
 
       var btn = document.querySelector('button[onclick="addProperty()"]');
       btn.disabled = true;
+      var originalText = btn.textContent;
       btn.textContent = 'Publicando\u2026';
 
       try {
+        var propId = _editingId ? _editingId.id : ('custom-' + Date.now());
         var mediaUrl = '';
-        var propId = 'custom-' + Date.now();
+        var mediaType = _uploadedMediaType;
 
-        if (firebaseReady) {
-          // Subir archivo a Firebase Storage
-          var storagePath = 'catalog/' + propId + '_' + _uploadedFile.name;
-          var fileRef = fbStorage.ref().child(storagePath);
-          var uploadSnap = await fileRef.put(_uploadedFile);
-          mediaUrl = await uploadSnap.ref.getDownloadURL();
-        } else {
-          // Fallback: base64 en localStorage
-          mediaUrl = await new Promise(function(resolve) {
-            var reader = new FileReader();
-            reader.onload = function(e) { resolve(e.target.result); };
-            reader.readAsDataURL(_uploadedFile);
-          });
+        // Si hay nuevo archivo, subirlo
+        if (_uploadedFile) {
+          btn.textContent = 'Subiendo imagen\u2026';
+          var uploaded = await uploadMedia(_uploadedFile, propId);
+          mediaUrl = uploaded.url;
+          mediaType = uploaded.type;
+        } else if (_editingId) {
+          // En modo edición sin nuevo archivo, conservar el anterior
+          var existingProp = getAllProperties().find(function(p) { return p.id === propId; });
+          if (existingProp) { mediaUrl = existingProp.mediaUrl; mediaType = existingProp.mediaType || 'image'; }
         }
 
-        var typeLabels = { apartamento: 'Apartamento' };
+        if (!mediaUrl && !_editingId) { alert('Por favor selecciona una foto o video.'); return; }
+
+        var typeLabels = { apartamento: 'Apartamento', edificio: 'Edificio', lote: 'Lote' };
         var newProp = {
           id: propId,
           type: type,
@@ -1404,38 +1557,47 @@
           area: area || '-',
           status: status,
           mediaUrl: mediaUrl,
-          mediaType: _uploadedMediaType,
+          mediaType: mediaType,
           custom: true,
           timestamp: firebaseReady ? firebase.firestore.FieldValue.serverTimestamp() : Date.now()
         };
 
+        btn.textContent = 'Guardando\u2026';
         if (firebaseReady) {
-          await db.collection('catalog').doc(propId).set(newProp);
-          // onSnapshot actualiza automáticamente el catálogo en todos los dispositivos
+          var docId = (_editingId && _editingId.firestoreId) ? _editingId.firestoreId : propId;
+          if (_editingId && _editingId.isBase) {
+            // Si se edita una propiedad base, la guardamos como override en Firestore
+            newProp.id = propId;
+            await db.collection('catalog').doc(propId).set(newProp);
+            await db.collection('settings').doc('catalog').set(
+              { deletedIds: firebase.firestore.FieldValue.arrayUnion(_editingId.id) },
+              { merge: true }
+            );
+          } else {
+            await db.collection('catalog').doc(docId).set(newProp, { merge: true });
+          }
         } else {
           var saved = JSON.parse(localStorage.getItem('ikar_props') || '[]');
-          saved.push(newProp);
+          var idx = saved.findIndex(function(p) { return p.id === propId; });
+          if (idx >= 0) saved[idx] = newProp; else saved.push(newProp);
           localStorage.setItem('ikar_props', JSON.stringify(saved));
           customProperties = saved;
           renderCatalog(currentFilter);
           renderAdminList();
         }
 
-        // Limpiar formulario
-        ['ap-name', 'ap-location', 'ap-price', 'ap-area'].forEach(function(id) {
-          document.getElementById(id).value = '';
-        });
-        clearUpload();
+        cancelEdit();
         var successMsg = document.getElementById('ap-success');
+        successMsg.textContent = _editingId ? '\u2705 Propiedad actualizada correctamente' : '\u2705 Propiedad publicada correctamente';
         successMsg.classList.remove('hidden');
         setTimeout(function() { successMsg.classList.add('hidden'); }, 3000);
 
       } catch (e) {
         console.error('Error al publicar:', e);
-        alert('Error al publicar. Revisa tu conexión e intenta de nuevo.');
+        alert('Error: ' + e.message + '\n\nSi el error es de Cloudinary, verifica que tu upload preset sea \'Unsigned\'.');
       } finally {
         btn.disabled = false;
-        btn.textContent = 'Guardar Propiedad';
+        btn.textContent = originalText;
       }
     }
 
