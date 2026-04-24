@@ -1008,35 +1008,34 @@
               </div>
             </div>
             <div class="mb-4">
-              <label class="text-xs font-semibold text-white/50 mb-2 block">Foto o Video del proyecto</label>
+              <label class="text-xs font-semibold text-white/50 mb-1 block">Foto o Video del proyecto</label>
               <!-- Upload zone -->
               <label for="ap-img-file" id="upload-zone"
                 class="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-white/20 hover:border-orange-500 rounded-xl p-5 cursor-pointer transition-all group">
                 <svg class="w-8 h-8 text-white/30 group-hover:text-orange-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                 </svg>
                 <span id="upload-label" class="text-xs text-white/40 group-hover:text-orange-400 transition-colors text-center">Haz clic o arrastra una foto o video aqu&iacute;<br/><span class="text-white/25">JPG, PNG, WEBP, MP4, MOV &mdash; m&aacute;x. 100 MB</span></span>
                 <input id="ap-img-file" type="file" accept="image/*,video/*" class="hidden" onchange="previewUpload(this)" />
               </label>
-              <!-- Preview imagen -->
+              <!-- Preview -->
               <div id="img-preview-wrap" class="hidden mt-3 relative rounded-xl overflow-hidden border border-white/10">
                 <img id="img-preview" src="" alt="Preview" class="w-full h-36 object-cover" />
-                <button type="button" onclick="clearUpload()"
-                  class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
-                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                <button type="button" onclick="clearUpload()" class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
               </div>
-              <!-- Preview video -->
               <div id="vid-preview-wrap" class="hidden mt-3 relative rounded-xl overflow-hidden border border-white/10">
                 <video id="vid-preview" class="w-full h-36 object-cover" muted playsinline controls></video>
-                <button type="button" onclick="clearUpload()"
-                  class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
-                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                <button type="button" onclick="clearUpload()" class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
+              </div>
+              <!-- URL alternativa -->
+              <div class="mt-3">
+                <label class="text-xs text-white/30 mb-1 block">O pega un link de imagen (opcional)</label>
+                <input id="ap-img-url" type="url" placeholder="https://..."
+                  class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/20" />
               </div>
             </div>
             <div class="flex gap-2">
@@ -1082,16 +1081,17 @@
     //
     // ============================================================
     const FIREBASE_CONFIG = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyDZOwJcWiGXj7mvLOXki6Y85uND-m_sEcs",
+      authDomain: "ikar-48146.firebaseapp.com",
+      projectId: "ikar-48146",
+      storageBucket: "ikar-48146.firebasestorage.app",
+      messagingSenderId: "1065371351227",
+      appId: "1:1065371351227:web:0ca027fee9bbb27488d19e"
     };
 
-    // Cloudinary (deja vacío si aún no tienes cuenta; usará localStorage)
-    const CLOUDINARY_CLOUD_NAME = '';   // ej: 'mi-empresa-ikar'
-    const CLOUDINARY_UPLOAD_PRESET = ''; // ej: 'ikar_unsigned'
+    // Cloudinary — fotos y videos desde el dispositivo
+    const CLOUDINARY_CLOUD_NAME = 'dhecnvzuo';
+    const CLOUDINARY_UPLOAD_PRESET = 'ikar_unsigned';
 
     // ============================================================
     // CATÁLOGO BASE (propiedades fijas)
@@ -1155,10 +1155,9 @@
     let currentFilter = 'all';
     let _uploadedFile = null;
     let _uploadedMediaType = 'image';
-    let _editingId = null; // ID de la propiedad que se está editando
+    let _editingId = null;
 
-    // Cloudinary disponible si ambas variables están configuradas
-    const cloudinaryReady = CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET;
+    const cloudinaryReady = !!(CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET);
 
     // Firebase handle
     let db = null;
@@ -1312,18 +1311,12 @@
       document.getElementById('admin-welcome').textContent = 'Bienvenido, ' + user;
       // Banner de modo almacenamiento
       var banner = document.getElementById('storage-banner');
-      if (cloudinaryReady && firebaseReady) {
+      if (firebaseReady) {
         banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-green-900/30 border-green-700/40 text-green-400';
-        banner.innerHTML = '&#9989; Modo completo: Cloudinary (fotos/videos) + Firestore (datos). Los cambios se ven en tiempo real para todos.';
-      } else if (firebaseReady && !cloudinaryReady) {
-        banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-yellow-900/30 border-yellow-700/40 text-yellow-400';
-        banner.innerHTML = '&#9888;&#65039; Modo parcial: Firestore activo. Las imágenes se guardan como base64 (sin Cloudinary). <strong>Para subir videos grandes, configura Cloudinary.</strong>';
-      } else if (cloudinaryReady && !firebaseReady) {
-        banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-yellow-900/30 border-yellow-700/40 text-yellow-400';
-        banner.innerHTML = '&#9888;&#65039; Modo parcial: Cloudinary activo. Los datos se guardan en este dispositivo (localStorage). Configura Firebase Firestore para sincronizar con todos.';
+        banner.innerHTML = '&#9989; Modo en vivo con Cloudinary + Firestore: Los proyectos se publican al instante para todos los usuarios.';
       } else {
-        banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-red-900/30 border-red-700/40 text-red-400';
-        banner.innerHTML = '&#9888;&#65039; Modo demo (solo este dispositivo). Configura Firebase + Cloudinary para publicar a todos los usuarios.';
+        banner.className = 'mb-4 text-xs rounded-xl px-4 py-3 border font-semibold bg-yellow-900/30 border-yellow-700/40 text-yellow-400';
+        banner.innerHTML = '&#9888;&#65039; Modo local: Los cambios solo se verán en este dispositivo.';
       }
       renderAdminList();
     }
@@ -1353,29 +1346,25 @@
     }
 
     // ============================================================
-    // UPLOAD HELPERS (imagen + video)
+    // UPLOAD HELPERS
     // ============================================================
     function previewUpload(input) {
       var file = input.files[0];
       if (!file) return;
       _uploadedFile = file;
       _uploadedMediaType = file.type.startsWith('video/') ? 'video' : 'image';
-
-      var imgWrap = document.getElementById('img-preview-wrap');
-      var vidWrap = document.getElementById('vid-preview-wrap');
-      imgWrap.classList.add('hidden');
-      vidWrap.classList.add('hidden');
-
+      document.getElementById('img-preview-wrap').classList.add('hidden');
+      document.getElementById('vid-preview-wrap').classList.add('hidden');
       var url = URL.createObjectURL(file);
       if (_uploadedMediaType === 'video') {
         document.getElementById('vid-preview').src = url;
-        vidWrap.classList.remove('hidden');
+        document.getElementById('vid-preview-wrap').classList.remove('hidden');
       } else {
         document.getElementById('img-preview').src = url;
-        imgWrap.classList.remove('hidden');
+        document.getElementById('img-preview-wrap').classList.remove('hidden');
       }
       document.getElementById('upload-label').innerHTML =
-        '<span class="text-orange-400 font-semibold">' + file.name + '</span><br/><span class="text-white/25">Archivo cargado correctamente</span>';
+        '<span class="text-orange-400 font-semibold">' + file.name + '</span><br/><span class="text-white/25">Listo para subir</span>';
     }
 
     function clearUpload() {
@@ -1411,44 +1400,23 @@
     });
 
     // ============================================================
-    // SUBIDA DE MEDIA — Cloudinary (gratis) o base64 localStorage
+    // SUBIDA A CLOUDINARY
     // ============================================================
     async function uploadMedia(file, propId) {
-      // Opcion 1: Cloudinary (configurado)
-      if (cloudinaryReady && file.type.startsWith('image/')) {
-        var formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-        formData.append('public_id', 'ikar_catalog_' + propId);
-        var res = await fetch('https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD_NAME + '/image/upload', {
-          method: 'POST',
-          body: formData
-        });
-        if (!res.ok) throw new Error('Error al subir a Cloudinary: ' + res.statusText);
-        var data = await res.json();
-        return { url: data.secure_url, type: 'image' };
-      }
-      if (cloudinaryReady && file.type.startsWith('video/')) {
-        var formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-        formData.append('public_id', 'ikar_catalog_' + propId);
-        var res = await fetch('https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD_NAME + '/video/upload', {
-          method: 'POST',
-          body: formData
-        });
-        if (!res.ok) throw new Error('Error al subir video a Cloudinary: ' + res.statusText);
-        var data = await res.json();
-        return { url: data.secure_url, type: 'video' };
-      }
-      // Opcion 2: base64 en Firestore / localStorage (sin cuenta Cloudinary)
-      var base64 = await new Promise(function(resolve, reject) {
-        var reader = new FileReader();
-        reader.onload = function(e) { resolve(e.target.result); };
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-      return { url: base64, type: file.type.startsWith('video/') ? 'video' : 'image' };
+      var isVideo = file.type.startsWith('video/');
+      var endpoint = 'https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD_NAME + (isVideo ? '/video/upload' : '/image/upload');
+      var formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+      formData.append('public_id', 'ikar_' + propId);
+      var res = await fetch(endpoint, { method: 'POST', body: formData });
+      if (!res.ok) throw new Error('Error Cloudinary: ' + res.statusText);
+      var data = await res.json();
+      return { url: data.secure_url, type: isVideo ? 'video' : 'image' };
+    }
+
+    function previewImageUrl(url) {
+      // helper para compatibilidad (no usado activamente)
     }
 
     // ============================================================
@@ -1473,21 +1441,19 @@
       document.getElementById('admin-form-title').textContent = '\u270F\uFE0F Editando: ' + prop.name;
       document.getElementById('btn-cancel-edit').style.display = '';
 
-      // Mostrar imagen actual
-      if (prop.mediaUrl) {
-        if (prop.mediaType === 'video') {
-          document.getElementById('vid-preview').src = prop.mediaUrl;
-          document.getElementById('vid-preview-wrap').classList.remove('hidden');
-          document.getElementById('img-preview-wrap').classList.add('hidden');
-        } else {
-          document.getElementById('img-preview').src = prop.mediaUrl;
-          document.getElementById('img-preview-wrap').classList.remove('hidden');
-          document.getElementById('vid-preview-wrap').classList.add('hidden');
-        }
-        _uploadedMediaType = prop.mediaType || 'image';
+      document.getElementById('ap-img-url').value = prop.mediaUrl || '';
+      if (prop.mediaUrl && prop.mediaType !== 'video') {
+        document.getElementById('img-preview').src = prop.mediaUrl;
+        document.getElementById('img-preview-wrap').classList.remove('hidden');
+        document.getElementById('vid-preview-wrap').classList.add('hidden');
+      } else if (prop.mediaUrl && prop.mediaType === 'video') {
+        document.getElementById('vid-preview').src = prop.mediaUrl;
+        document.getElementById('vid-preview-wrap').classList.remove('hidden');
+        document.getElementById('img-preview-wrap').classList.add('hidden');
       }
+      _uploadedMediaType = prop.mediaType || 'image';
       document.getElementById('upload-label').innerHTML =
-        '<span class="text-orange-400 font-semibold">Archivo actual cargado</span><br/><span class="text-white/25">Sube uno nuevo para reemplazarlo</span>';
+        '<span class="text-orange-400 font-semibold">Media actual cargada</span><br/><span class="text-white/25">Selecciona un nuevo archivo para reemplazar</span>';
 
       document.getElementById('ap-success').classList.add('hidden');
       // Scroll al formulario dentro del panel
@@ -1501,6 +1467,7 @@
       });
       document.getElementById('ap-type').value = 'apartamento';
       document.getElementById('ap-status').value = 'venta';
+      document.getElementById('ap-img-url').value = '';
       clearUpload();
       var btn = document.querySelector('button[onclick="addProperty()"]');
       btn.textContent = 'Guardar Propiedad';
@@ -1530,21 +1497,23 @@
       try {
         var propId = _editingId ? _editingId.id : ('custom-' + Date.now());
         var mediaUrl = '';
-        var mediaType = _uploadedMediaType;
+        var mediaType = _uploadedMediaType || 'image';
 
-        // Si hay nuevo archivo, subirlo
         if (_uploadedFile) {
-          btn.textContent = 'Subiendo imagen\u2026';
+          // Archivo nuevo desde dispositivo → subir a Cloudinary
+          btn.textContent = 'Subiendo a Cloudinary\u2026';
           var uploaded = await uploadMedia(_uploadedFile, propId);
           mediaUrl = uploaded.url;
           mediaType = uploaded.type;
-        } else if (_editingId) {
-          // En modo edición sin nuevo archivo, conservar el anterior
-          var existingProp = getAllProperties().find(function(p) { return p.id === propId; });
-          if (existingProp) { mediaUrl = existingProp.mediaUrl; mediaType = existingProp.mediaType || 'image'; }
+        } else {
+          // Sin archivo → usar URL manual si existe
+          var urlInput = document.getElementById('ap-img-url').value.trim();
+          if (urlInput) { mediaUrl = urlInput; mediaType = 'image'; }
+          else if (_editingId) {
+            var existingProp = getAllProperties().find(function(p) { return p.id === propId; });
+            if (existingProp) { mediaUrl = existingProp.mediaUrl; mediaType = existingProp.mediaType || 'image'; }
+          }
         }
-
-        if (!mediaUrl && !_editingId) { alert('Por favor selecciona una foto o video.'); return; }
 
         var typeLabels = { apartamento: 'Apartamento', edificio: 'Edificio', lote: 'Lote' };
         var newProp = {
@@ -1594,7 +1563,7 @@
 
       } catch (e) {
         console.error('Error al publicar:', e);
-        alert('Error: ' + e.message + '\n\nSi el error es de Cloudinary, verifica que tu upload preset sea \'Unsigned\'.');
+        alert('Error al publicar: ' + e.message);
       } finally {
         btn.disabled = false;
         btn.textContent = originalText;
