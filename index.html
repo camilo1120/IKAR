@@ -331,28 +331,29 @@
       <div class="absolute top-1/2 right-1/4 w-1 h-1 bg-orange-400 rounded-full opacity-50 animate-ping"
         style="animation-delay:2.1s"></div>
     </div>
-    <div class="relative z-20 max-w-5xl mx-auto px-6 text-center">
+    <div class="relative z-20 max-w-5xl mx-auto px-4 md:px-6 text-center">
       <div
-        class="inline-block bg-orange-500/20 border border-orange-500/40 text-orange-400 text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-widest uppercase">
+        class="hidden sm:inline-block bg-orange-500/20 border border-orange-500/40 text-orange-400 text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-widest uppercase">
         IKAR Desarrollador Urbanístico e Inmobiliario
       </div>
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6"
+      <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight mb-5 md:mb-6"
         style="text-shadow:0 4px 30px rgba(0,0,0,.7)">
-        <span class="text-gradient">IKAR DESARROLLADOR</span><br />
+        <span class="text-gradient">IKAR</span><br class="sm:hidden" /><span class="hidden sm:inline text-gradient"> DESARROLLADOR</span><br />
+        <span class="sm:hidden text-gradient text-2xl font-black block -mt-1 mb-1">DESARROLLADOR</span>
         <span style="color:#ffffff">URBANÍSTICO E INMOBILIARIO</span>
       </h1>
-      <p class="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed">
+      <p class="text-base md:text-xl text-white/80 max-w-3xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
         Apartamentos y edificios diseñados con excelencia arquitectónica en Piedecuesta. 7 años de experiencia, calidad,
         solidez y confianza en cada proyecto.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
         <a href="#catalogo"
-          class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-4 rounded-full text-sm tracking-wide transition-all shadow-xl shadow-orange-900/30 hover:-translate-y-1">
+          class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-3.5 sm:py-4 rounded-full text-sm tracking-wide transition-all shadow-xl shadow-orange-900/30 hover:-translate-y-1">
           Ver Nuestros Apartamentos
         </a>
         <a href="https://wa.me/573164298990?text=Hola%20IKAR%2C%20quiero%20información%20sobre%20sus%20proyectos"
           target="_blank"
-          class="border-2 border-white/60 hover:border-orange-500 text-white hover:text-orange-400 font-bold px-8 py-4 rounded-full text-sm tracking-wide transition-all hover:-translate-y-1">
+          class="border-2 border-white/60 hover:border-orange-500 text-white hover:text-orange-400 font-bold px-8 py-3.5 sm:py-4 rounded-full text-sm tracking-wide transition-all hover:-translate-y-1">
           Cotiza por WhatsApp
         </a>
       </div>
@@ -397,9 +398,7 @@
             </svg>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Nuestra Misión</h3>
-          <p class="text-white/60 leading-relaxed text-sm">En IKAR construimos proyectos residenciales y urbanísticos de
-            alto estándar en Colombia, entregando viviendas y espacios diseñados con precisión arquitectónica,
-            materiales de calidad y un compromiso real con el bienestar de cada familia.</p>
+          <p class="text-white/60 leading-relaxed text-sm">En IKAR Constructora S.A.S. hacemos realidad el sueño de tener vivienda propia, creando espacios pensados para el bienestar, la tranquilidad y el futuro de las familias. Brindamos oportunidades de inversión seguras y accesibles, con financiación directa y acompañamiento cercano, para que cada cliente sienta confianza en cada paso y orgullo de su decisión.</p>
         </div>
         <div class="rounded-2xl p-8 shadow-xl border-t-4 border-orange-600 reveal"
           style="background:#001F3F;transition-delay:.15s">
@@ -412,9 +411,7 @@
             </svg>
           </div>
           <h3 class="text-xl font-bold text-white mb-3">Nuestra Visión</h3>
-          <p class="text-white/65 leading-relaxed text-sm">Ser la constructora referente en el Magdalena Medio
-            colombiano, reconocida por la calidad técnica, el diseño arquitectónico innovador y la entrega oportuna de
-            proyectos que transforman comunidades.</p>
+          <p class="text-white/65 leading-relaxed text-sm">Para el año 2030, IKAR Constructora S.A.S. será la constructora que las familias eligen con el corazón y recomiendan con confianza, reconocida por transformar proyectos en hogares llenos de vida, por facilitar el acceso a la vivienda y por ser una aliada sólida para quienes sueñan con invertir y crecer.</p>
         </div>
       </div>
       <div class="text-center mb-10 reveal">
@@ -1013,7 +1010,7 @@
               <div class="flex gap-2 mb-3">
                 <button type="button" onclick="switchMediaTab('photos')" id="tab-photos"
                   class="media-tab active flex-1 text-xs font-bold py-2 rounded-lg border border-orange-500 bg-orange-600/20 text-orange-400 transition-all">
-                  📷 Fotos <span id="photo-count-badge" class="ml-1 bg-orange-600 text-white rounded-full px-1.5 py-0.5 text-[10px]">0/10</span>
+                  📷 Fotos <span id="photo-count-badge" class="ml-1 bg-orange-600 text-white rounded-full px-1.5 py-0.5 text-[10px]">+</span>
                 </button>
                 <button type="button" onclick="switchMediaTab('videos')" id="tab-videos"
                   class="media-tab flex-1 text-xs font-bold py-2 rounded-lg border border-white/15 text-white/50 transition-all">
@@ -1028,7 +1025,7 @@
                   <svg class="w-7 h-7 text-white/30 group-hover:text-orange-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                   </svg>
-                  <span class="text-xs text-white/40 group-hover:text-orange-400 text-center">Seleccionar fotos (máx. 10)<br/><span class="text-white/25">JPG, PNG, WEBP — máx. 20 MB c/u</span></span>
+                  <span class="text-xs text-white/40 group-hover:text-orange-400 text-center">Seleccionar fotos (ilimitado)<br/><span class="text-white/25">JPG, PNG, WEBP — máx. 20 MB c/u</span></span>
                   <input id="ap-img-files" type="file" accept="image/*" multiple class="hidden" onchange="addPhotoFiles(this)" />
                 </label>
                 <!-- Photo grid preview -->
@@ -1190,10 +1187,11 @@
     // INIT FIREBASE (solo Firestore, sin Storage)
     // ============================================================
     (function initFirebase() {
+      // Siempre cargar localStorage primero (para deletedBaseIds y props)
+      loadLocalData();
       try {
         if (FIREBASE_CONFIG.projectId === 'YOUR_PROJECT_ID') {
           console.warn('Firebase no configurado. Usando localStorage.');
-          loadFromLocalStorage();
           return;
         }
         firebase.initializeApp(FIREBASE_CONFIG);
@@ -1202,11 +1200,12 @@
         setupFirestoreListeners();
       } catch (e) {
         console.error('Error Firebase:', e);
-        loadFromLocalStorage();
+        // localStorage ya cargado arriba, solo renderizar
+        renderCatalog(currentFilter);
       }
     })();
 
-    function loadFromLocalStorage() {
+    function loadLocalData() {
       customProperties = JSON.parse(localStorage.getItem('ikar_props') || '[]');
       deletedBaseIds = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
       renderCatalog(currentFilter);
@@ -1227,14 +1226,25 @@
         if (dash && !dash.classList.contains('hidden')) renderAdminList();
       }, function(err) { console.error('Error catalog listener:', err); });
 
-      // Escucha IDs eliminadas de base
+      // Escucha IDs eliminadas de base — merge con localStorage para no perder datos locales
       db.collection('settings').doc('catalog').onSnapshot(function(doc) {
-        deletedBaseIds = doc.exists ? (doc.data().deletedIds || []) : [];
+        var localDeleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
+        var firestoreDeleted = doc.exists ? (doc.data().deletedIds || []) : [];
+        // Unión de ambas listas
+        var merged = firestoreDeleted.slice();
+        localDeleted.forEach(function(id) { if (!merged.includes(id)) merged.push(id); });
+        deletedBaseIds = merged;
+        // Sincronizar localStorage con lo que ya está en Firestore
+        localStorage.setItem('ikar_deleted', JSON.stringify(merged));
         renderCatalog(currentFilter);
-        // También refrescar el panel de admin si está abierto
         var dash = document.getElementById('admin-dashboard');
         if (dash && !dash.classList.contains('hidden')) renderAdminList();
-      }, function(err) { console.error('Error settings listener:', err); });
+      }, function(err) {
+        // Si no hay permisos de lectura, cargar desde localStorage
+        var localDeleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
+        deletedBaseIds = localDeleted;
+        console.warn('Error settings listener (usando localStorage):', err);
+      });
     }
 
     // ============================================================
@@ -1472,23 +1482,20 @@
 
     function updateMediaBadges() {
       var total = _pendingPhotos.length + _urlPhotos.length;
-      document.getElementById('photo-count-badge').textContent = total + '/10';
+      document.getElementById('photo-count-badge').textContent = total > 0 ? total + '' : '+';
       document.getElementById('video-count-badge').textContent = _pendingVideos.length + '/3';
       document.getElementById('photo-count-badge').style.background = total > 0 ? '' : 'rgba(255,107,0,0.4)';
       document.getElementById('video-count-badge').style.background = _pendingVideos.length > 0 ? '#FF6B00' : '';
     }
 
     // ============================================================
-    // MULTI-PHOTO UPLOAD
+    // MULTI-PHOTO UPLOAD (ilimitado)
     // ============================================================
     function addPhotoFiles(input) {
       var files = Array.from(input.files);
-      var total = _pendingPhotos.length + _urlPhotos.length;
       files.forEach(function(file) {
-        if (total >= 10) { alert('Máximo 10 fotos por proyecto.'); return; }
         var localUrl = URL.createObjectURL(file);
         _pendingPhotos.push({ file: file, localUrl: localUrl, cloudUrl: '' });
-        total++;
       });
       input.value = '';
       renderPhotoGrid();
@@ -1843,49 +1850,49 @@
       if (!confirm('¿Eliminar esta propiedad del catálogo?')) return;
       var isBase = BASE_PROPERTIES.some(function(p) { return p.id === id; });
 
-      // Deshabilitar botón visualmente mientras se procesa
       var btns = document.querySelectorAll('#admin-prop-list button');
       btns.forEach(function(b) { b.disabled = true; });
 
       try {
-        if (firebaseReady) {
-          if (isBase) {
-            // Propiedad BASE: guardar su ID en la lista de eliminados en Firestore
-            await db.collection('settings').doc('catalog').set(
-              { deletedIds: firebase.firestore.FieldValue.arrayUnion(id) },
-              { merge: true }
-            );
-            // Actualización inmediata local (sin esperar el onSnapshot)
-            if (!deletedBaseIds.includes(id)) deletedBaseIds.push(id);
-          } else {
-            // Propiedad CUSTOM: eliminar documento de Firestore
+        if (isBase) {
+          // BASE: siempre guardar en localStorage primero (funciona sin Firestore)
+          var deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
+          if (!deleted.includes(id)) deleted.push(id);
+          localStorage.setItem('ikar_deleted', JSON.stringify(deleted));
+          if (!deletedBaseIds.includes(id)) deletedBaseIds.push(id);
+
+          // Intentar también en Firestore (no bloquear si falla)
+          if (firebaseReady) {
+            try {
+              await db.collection('settings').doc('catalog').set(
+                { deletedIds: firebase.firestore.FieldValue.arrayUnion(id) },
+                { merge: true }
+              );
+            } catch (fbErr) {
+              console.warn('No se pudo guardar eliminación en Firestore (sin permisos). Usando localStorage.', fbErr);
+            }
+          }
+        } else {
+          // CUSTOM: eliminar de Firestore o localStorage
+          if (firebaseReady) {
             var docId = firestoreId || id;
             await db.collection('catalog').doc(docId).delete();
-          }
-          // Refrescar UI de inmediato sin esperar onSnapshot
-          renderCatalog(currentFilter);
-          renderAdminList();
-        } else {
-          // Modo localStorage (sin Firebase)
-          if (isBase) {
-            var deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
-            if (!deleted.includes(id)) deleted.push(id);
-            localStorage.setItem('ikar_deleted', JSON.stringify(deleted));
-            deletedBaseIds = deleted;
           } else {
-            var saved = JSON.parse(localStorage.getItem('ikar_props') || '[]');
-            saved = saved.filter(function(p) { return p.id !== id; });
-            localStorage.setItem('ikar_props', JSON.stringify(saved));
-            customProperties = saved;
+            var savedProps = JSON.parse(localStorage.getItem('ikar_props') || '[]');
+            savedProps = savedProps.filter(function(p) { return p.id !== id; });
+            localStorage.setItem('ikar_props', JSON.stringify(savedProps));
+            customProperties = savedProps;
           }
-          renderCatalog(currentFilter);
-          renderAdminList();
         }
+
+        // Refrescar UI
+        renderCatalog(currentFilter);
+        renderAdminList();
+
       } catch (e) {
         console.error('Error al eliminar:', e);
         alert('Error al eliminar la propiedad: ' + e.message);
       } finally {
-        // Re-habilitar botones (renderAdminList los recrea, pero por si acaso)
         var btnsAfter = document.querySelectorAll('#admin-prop-list button');
         btnsAfter.forEach(function(b) { b.disabled = false; });
       }
