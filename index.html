@@ -1187,12 +1187,13 @@
     // INIT FIREBASE (solo Firestore, sin Storage)
     // ============================================================
     (function initFirebase() {
-      // Siempre cargar localStorage primero (para deletedBaseIds y props)
+      // Cargar datos locales en las variables (NO llama renderCatalog aquí
+      // porque revealObserver se define más abajo y aún no existe)
       loadLocalData();
       try {
         if (FIREBASE_CONFIG.projectId === 'YOUR_PROJECT_ID') {
           console.warn('Firebase no configurado. Usando localStorage.');
-          return;
+          return; // DOMContentLoaded llamará renderCatalog
         }
         firebase.initializeApp(FIREBASE_CONFIG);
         db = firebase.firestore();
@@ -1200,15 +1201,14 @@
         setupFirestoreListeners();
       } catch (e) {
         console.error('Error Firebase:', e);
-        // localStorage ya cargado arriba, solo renderizar
-        renderCatalog(currentFilter);
+        // DOMContentLoaded llamará renderCatalog si firebaseReady sigue false
       }
     })();
 
+    // Carga SOLO los arrays desde localStorage (sin renderizar)
     function loadLocalData() {
       customProperties = JSON.parse(localStorage.getItem('ikar_props') || '[]');
       deletedBaseIds = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
-      renderCatalog(currentFilter);
     }
 
     // ============================================================
@@ -1942,7 +1942,9 @@
     // INIT
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
-      if (!firebaseReady) renderCatalog('all');
+      // Renderizar siempre al cargar para que el catálogo base aparezca inmediatamente.
+      // Si Firebase está listo, sus listeners actualizarán los datos al llegar.
+      renderCatalog('all');
     });
   </script>
 </body>
