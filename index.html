@@ -1008,34 +1008,55 @@
               </div>
             </div>
             <div class="mb-4">
-              <label class="text-xs font-semibold text-white/50 mb-1 block">Foto o Video del proyecto</label>
-              <!-- Upload zone -->
-              <label for="ap-img-file" id="upload-zone"
-                class="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-white/20 hover:border-orange-500 rounded-xl p-5 cursor-pointer transition-all group">
-                <svg class="w-8 h-8 text-white/30 group-hover:text-orange-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                </svg>
-                <span id="upload-label" class="text-xs text-white/40 group-hover:text-orange-400 transition-colors text-center">Haz clic o arrastra una foto o video aqu&iacute;<br/><span class="text-white/25">JPG, PNG, WEBP, MP4, MOV &mdash; m&aacute;x. 100 MB</span></span>
-                <input id="ap-img-file" type="file" accept="image/*,video/*" class="hidden" onchange="previewUpload(this)" />
-              </label>
-              <!-- Preview -->
-              <div id="img-preview-wrap" class="hidden mt-3 relative rounded-xl overflow-hidden border border-white/10">
-                <img id="img-preview" src="" alt="Preview" class="w-full h-36 object-cover" />
-                <button type="button" onclick="clearUpload()" class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
-                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+              <label class="text-xs font-semibold text-white/50 mb-2 block">Fotos y Videos del proyecto</label>
+              <!-- Tabs -->
+              <div class="flex gap-2 mb-3">
+                <button type="button" onclick="switchMediaTab('photos')" id="tab-photos"
+                  class="media-tab active flex-1 text-xs font-bold py-2 rounded-lg border border-orange-500 bg-orange-600/20 text-orange-400 transition-all">
+                  📷 Fotos <span id="photo-count-badge" class="ml-1 bg-orange-600 text-white rounded-full px-1.5 py-0.5 text-[10px]">0/10</span>
+                </button>
+                <button type="button" onclick="switchMediaTab('videos')" id="tab-videos"
+                  class="media-tab flex-1 text-xs font-bold py-2 rounded-lg border border-white/15 text-white/50 transition-all">
+                  🎬 Videos <span id="video-count-badge" class="ml-1 bg-white/20 text-white/60 rounded-full px-1.5 py-0.5 text-[10px]">0/3</span>
                 </button>
               </div>
-              <div id="vid-preview-wrap" class="hidden mt-3 relative rounded-xl overflow-hidden border border-white/10">
-                <video id="vid-preview" class="w-full h-36 object-cover" muted playsinline controls></video>
-                <button type="button" onclick="clearUpload()" class="absolute top-2 right-2 w-7 h-7 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">
-                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
+
+              <!-- PHOTOS TAB -->
+              <div id="media-tab-photos">
+                <label for="ap-img-files" id="upload-zone-photos"
+                  class="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-white/20 hover:border-orange-500 rounded-xl p-4 cursor-pointer transition-all group">
+                  <svg class="w-7 h-7 text-white/30 group-hover:text-orange-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <span class="text-xs text-white/40 group-hover:text-orange-400 text-center">Seleccionar fotos (máx. 10)<br/><span class="text-white/25">JPG, PNG, WEBP — máx. 20 MB c/u</span></span>
+                  <input id="ap-img-files" type="file" accept="image/*" multiple class="hidden" onchange="addPhotoFiles(this)" />
+                </label>
+                <!-- Photo grid preview -->
+                <div id="photo-preview-grid" class="grid grid-cols-4 gap-2 mt-3"></div>
+                <!-- URL input con validación -->
+                <div class="mt-3 border-t border-white/5 pt-3">
+                  <label class="text-xs text-white/30 mb-1 block">➕ Agregar foto por URL (Facebook, Drive, etc.)</label>
+                  <div class="flex gap-2">
+                    <input id="ap-img-url" type="url" placeholder="https://..."
+                      class="flex-1 bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/20" />
+                    <button type="button" onclick="validateAndAddUrl()" class="bg-navy hover:bg-navy-light text-white text-xs font-bold px-3 py-2 rounded-lg transition-all whitespace-nowrap">Agregar</button>
+                  </div>
+                  <div id="url-status" class="hidden mt-2 text-xs rounded-lg px-3 py-2"></div>
+                </div>
               </div>
-              <!-- URL alternativa -->
-              <div class="mt-3">
-                <label class="text-xs text-white/30 mb-1 block">O pega un link de imagen (opcional)</label>
-                <input id="ap-img-url" type="url" placeholder="https://..."
-                  class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/20" />
+
+              <!-- VIDEOS TAB -->
+              <div id="media-tab-videos" class="hidden">
+                <label for="ap-vid-files" id="upload-zone-videos"
+                  class="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-white/20 hover:border-orange-500 rounded-xl p-4 cursor-pointer transition-all group">
+                  <svg class="w-7 h-7 text-white/30 group-hover:text-orange-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  <span class="text-xs text-white/40 group-hover:text-orange-400 text-center">Seleccionar videos (máx. 3)<br/><span class="text-white/25">MP4, MOV, WEBM — máx. 100 MB c/u</span></span>
+                  <input id="ap-vid-files" type="file" accept="video/*" multiple class="hidden" onchange="addVideoFiles(this)" />
+                </label>
+                <!-- Video preview list -->
+                <div id="video-preview-list" class="space-y-2 mt-3"></div>
               </div>
             </div>
             <div class="flex gap-2">
@@ -1153,9 +1174,11 @@
     let customProperties = [];
     let deletedBaseIds = [];
     let currentFilter = 'all';
-    let _uploadedFile = null;
-    let _uploadedMediaType = 'image';
     let _editingId = null;
+    // Multi-media queues
+    let _pendingPhotos  = [];   // [{file, localUrl, cloudUrl}]
+    let _pendingVideos  = [];   // [{file, localUrl, cloudUrl}]
+    let _urlPhotos      = [];   // [{url, validated}] — from URL input
 
     const cloudinaryReady = !!(CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET);
 
@@ -1208,6 +1231,9 @@
       db.collection('settings').doc('catalog').onSnapshot(function(doc) {
         deletedBaseIds = doc.exists ? (doc.data().deletedIds || []) : [];
         renderCatalog(currentFilter);
+        // También refrescar el panel de admin si está abierto
+        var dash = document.getElementById('admin-dashboard');
+        if (dash && !dash.classList.contains('hidden')) renderAdminList();
       }, function(err) { console.error('Error settings listener:', err); });
     }
 
@@ -1222,7 +1248,7 @@
     }
 
     // ============================================================
-    // RENDER CATÁLOGO (con soporte de video)
+    // RENDER CATÁLOGO (galería multi-foto + video)
     // ============================================================
     function renderCatalog(filter) {
       currentFilter = filter;
@@ -1235,13 +1261,61 @@
       grid.innerHTML = items.map(function(p) {
         var st = STATUS_CLASSES[p.status] || STATUS_CLASSES.venta;
         var btnDisabled = p.status === 'vendido';
-        var mediaHtml = (p.mediaType === 'video')
-          ? '<video src="' + (p.mediaUrl || '') + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-carbon-3" autoplay muted loop playsinline></video>'
-          : '<img src="' + (p.mediaUrl || p.img || 'images/hero.png') + '" alt="' + p.name + '" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-carbon-3" onerror="this.src=\'images/hero.png\'"/>';
+
+        // Build media array for gallery
+        var allPhotos = p.photos && p.photos.length > 0
+          ? p.photos
+          : (p.mediaUrl ? [{ url: p.mediaUrl, type: p.mediaType || 'image' }] : []);
+        var allVideos = p.videos && p.videos.length > 0
+          ? p.videos
+          : (p.mediaUrl && p.mediaType === 'video' ? [{ url: p.mediaUrl, type: 'video' }] : []);
+
+        // Combine: photos first, then videos
+        var allMedia = allPhotos.concat(allVideos);
+        var hasMultiple = allMedia.length > 1;
+        var propSafeId = p.id.replace(/[^a-zA-Z0-9]/g, '_');
+
+        var firstMedia = allMedia.length > 0 ? allMedia[0] : { url: p.mediaUrl || 'images/hero.png', type: p.mediaType || 'image' };
+        var mediaHtml = buildMediaSlide(firstMedia, p.name, propSafeId, 0, allMedia.length);
+
+        // Dots navigation
+        var dotsHtml = '';
+        if (hasMultiple) {
+          dotsHtml = '<div class="absolute bottom-2 left-0 right-0 flex justify-center gap-1 z-10">' +
+            allMedia.map(function(_, i) {
+              return '<button onclick="goSlide(\'' + propSafeId + '\',' + i + ')" ' +
+                'id="dot-' + propSafeId + '-' + i + '" ' +
+                'class="w-1.5 h-1.5 rounded-full transition-all ' + (i === 0 ? 'bg-white' : 'bg-white/40') + '"></button>';
+            }).join('') + '</div>';
+        }
+
+        // Video count badge
+        var videosBadge = allVideos.length > 0
+          ? '<div class="absolute top-3 left-3 bg-blue-600/80 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-0.5 rounded-full">\uD83C\uDFA5 ' + allVideos.length + '</div>'
+          : '';
+        // Photo count badge if multiple photos
+        var photosBadge = allPhotos.length > 1
+          ? '<div class="absolute top-3 left-3 ' + (allVideos.length > 0 ? 'top-8' : 'top-3') + ' bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-0.5 rounded-full">\uD83D\uDCF7 ' + allPhotos.length + '</div>'
+          : '';
+
+        // Arrow buttons for navigation
+        var arrowsHtml = '';
+        if (hasMultiple) {
+          arrowsHtml = '<button onclick="prevSlide(\'' + propSafeId + '\',' + allMedia.length + ')" ' +
+            'class="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-7 h-7 bg-black/60 hover:bg-black/90 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100">' +
+            '<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg></button>' +
+            '<button onclick="nextSlide(\'' + propSafeId + '\',' + allMedia.length + ')" ' +
+            'class="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-7 h-7 bg-black/60 hover:bg-black/90 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100">' +
+            '<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg></button>';
+        }
+
         return '<div class="prop-card rounded-3xl overflow-hidden shadow-xl border border-white/5 reveal group">' +
-          '<div class="relative h-48 overflow-hidden">' + mediaHtml +
-          '<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>' +
+          '<div class="relative h-48 overflow-hidden" id="card-' + propSafeId + '" data-media=\'' + JSON.stringify(allMedia).replace(/'/g, '&#39;') + '\' data-idx="0">' +
+          mediaHtml +
+          '<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent pointer-events-none"></div>' +
           '<div class="absolute top-3 right-3"><span class="text-xs font-bold px-3 py-1 rounded-full ' + st.cls + '">' + st.label + '</span></div>' +
+          videosBadge + photosBadge +
+          arrowsHtml + dotsHtml +
           '<div class="absolute bottom-3 left-4"><span class="bg-white/15 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">' + p.typeLabel + '</span></div>' +
           '</div><div class="p-6">' +
           '<h3 class="font-black text-white text-base mb-1 leading-tight">' + p.name + '</h3>' +
@@ -1264,6 +1338,44 @@
         el.classList.remove('visible');
         revealObserver.observe(el);
       });
+    }
+
+    function buildMediaSlide(media, name, propSafeId, idx, total) {
+      if (!media || !media.url) {
+        return '<img src="images/hero.png" alt="' + name + '" class="w-full h-full object-cover transition-transform duration-500 bg-carbon-3" />';
+      }
+      if (media.type === 'video') {
+        return '<video src="' + media.url + '" class="w-full h-full object-cover bg-carbon-3" autoplay muted loop playsinline></video>';
+      }
+      return '<img src="' + media.url + '" alt="' + name + '" class="w-full h-full object-cover transition-transform duration-500 bg-carbon-3" onerror="this.src=\'images/hero.png\'"/>';
+    }
+
+    // Gallery navigation
+    function goSlide(propSafeId, idx) {
+      var card = document.getElementById('card-' + propSafeId);
+      if (!card) return;
+      var media = JSON.parse(card.dataset.media);
+      if (idx < 0) idx = media.length - 1;
+      if (idx >= media.length) idx = 0;
+      card.dataset.idx = idx;
+      // Replace media content
+      var existing = card.querySelector('img, video');
+      if (existing) existing.remove();
+      var div = document.createElement('div');
+      div.innerHTML = buildMediaSlide(media[idx], '', propSafeId, idx, media.length);
+      card.insertBefore(div.firstChild, card.firstChild);
+      // Update dots
+      card.querySelectorAll('[id^="dot-' + propSafeId + '-"]').forEach(function(dot, i) {
+        dot.className = 'w-1.5 h-1.5 rounded-full transition-all ' + (i === idx ? 'bg-white' : 'bg-white/40');
+      });
+    }
+    function nextSlide(propSafeId, total) {
+      var card = document.getElementById('card-' + propSafeId);
+      goSlide(propSafeId, parseInt(card.dataset.idx || '0') + 1);
+    }
+    function prevSlide(propSafeId, total) {
+      var card = document.getElementById('card-' + propSafeId);
+      goSlide(propSafeId, parseInt(card.dataset.idx || '0') - 1);
     }
 
     function filterItems(type, btn) {
@@ -1346,56 +1458,197 @@
     }
 
     // ============================================================
-    // UPLOAD HELPERS
+    // MEDIA TAB SWITCHER
     // ============================================================
-    function previewUpload(input) {
-      var file = input.files[0];
-      if (!file) return;
-      _uploadedFile = file;
-      _uploadedMediaType = file.type.startsWith('video/') ? 'video' : 'image';
-      document.getElementById('img-preview-wrap').classList.add('hidden');
-      document.getElementById('vid-preview-wrap').classList.add('hidden');
-      var url = URL.createObjectURL(file);
-      if (_uploadedMediaType === 'video') {
-        document.getElementById('vid-preview').src = url;
-        document.getElementById('vid-preview-wrap').classList.remove('hidden');
-      } else {
-        document.getElementById('img-preview').src = url;
-        document.getElementById('img-preview-wrap').classList.remove('hidden');
+    function switchMediaTab(tab) {
+      var isPhotos = tab === 'photos';
+      document.getElementById('media-tab-photos').classList.toggle('hidden', !isPhotos);
+      document.getElementById('media-tab-videos').classList.toggle('hidden', isPhotos);
+      document.getElementById('tab-photos').className = 'media-tab flex-1 text-xs font-bold py-2 rounded-lg border transition-all ' +
+        (isPhotos ? 'border-orange-500 bg-orange-600/20 text-orange-400' : 'border-white/15 text-white/50');
+      document.getElementById('tab-videos').className = 'media-tab flex-1 text-xs font-bold py-2 rounded-lg border transition-all ' +
+        (!isPhotos ? 'border-orange-500 bg-orange-600/20 text-orange-400' : 'border-white/15 text-white/50');
+    }
+
+    function updateMediaBadges() {
+      var total = _pendingPhotos.length + _urlPhotos.length;
+      document.getElementById('photo-count-badge').textContent = total + '/10';
+      document.getElementById('video-count-badge').textContent = _pendingVideos.length + '/3';
+      document.getElementById('photo-count-badge').style.background = total > 0 ? '' : 'rgba(255,107,0,0.4)';
+      document.getElementById('video-count-badge').style.background = _pendingVideos.length > 0 ? '#FF6B00' : '';
+    }
+
+    // ============================================================
+    // MULTI-PHOTO UPLOAD
+    // ============================================================
+    function addPhotoFiles(input) {
+      var files = Array.from(input.files);
+      var total = _pendingPhotos.length + _urlPhotos.length;
+      files.forEach(function(file) {
+        if (total >= 10) { alert('Máximo 10 fotos por proyecto.'); return; }
+        var localUrl = URL.createObjectURL(file);
+        _pendingPhotos.push({ file: file, localUrl: localUrl, cloudUrl: '' });
+        total++;
+      });
+      input.value = '';
+      renderPhotoGrid();
+      updateMediaBadges();
+    }
+
+    function renderPhotoGrid() {
+      var grid = document.getElementById('photo-preview-grid');
+      var allPhotos = _pendingPhotos.map(function(p, i) {
+        return '<div class="relative rounded-lg overflow-hidden bg-black/40 aspect-square">' +
+          '<img src="' + p.localUrl + '" class="w-full h-full object-cover" />' +
+          '<button type="button" onclick="removePhoto(\'file\',' + i + ')" ' +
+          'class="absolute top-1 right-1 w-5 h-5 bg-black/80 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">' +
+          '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>' +
+          '</button></div>';
+      }).join('');
+      var urlPhotosHtml = _urlPhotos.map(function(p, i) {
+        return '<div class="relative rounded-lg overflow-hidden bg-black/40 aspect-square">' +
+          '<img src="' + p.url + '" class="w-full h-full object-cover" onerror="this.parentElement.style.background=\'#330000\'" />' +
+          '<div class="absolute bottom-0 left-0 right-0 bg-black/70 text-[9px] text-white/60 px-1 py-0.5 truncate">URL</div>' +
+          '<button type="button" onclick="removePhoto(\'url\',' + i + ')" ' +
+          'class="absolute top-1 right-1 w-5 h-5 bg-black/80 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors">' +
+          '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>' +
+          '</button></div>';
+      }).join('');
+      grid.innerHTML = allPhotos + urlPhotosHtml;
+    }
+
+    function removePhoto(source, idx) {
+      if (source === 'file') _pendingPhotos.splice(idx, 1);
+      else _urlPhotos.splice(idx, 1);
+      renderPhotoGrid();
+      updateMediaBadges();
+    }
+
+    // ============================================================
+    // MULTI-VIDEO UPLOAD
+    // ============================================================
+    function addVideoFiles(input) {
+      var files = Array.from(input.files);
+      files.forEach(function(file) {
+        if (_pendingVideos.length >= 3) { alert('Máximo 3 videos por proyecto.'); return; }
+        var localUrl = URL.createObjectURL(file);
+        _pendingVideos.push({ file: file, localUrl: localUrl, cloudUrl: '' });
+      });
+      input.value = '';
+      renderVideoList();
+      updateMediaBadges();
+    }
+
+    function renderVideoList() {
+      var list = document.getElementById('video-preview-list');
+      list.innerHTML = _pendingVideos.map(function(v, i) {
+        var sizeMB = (v.file.size / 1024 / 1024).toFixed(1);
+        return '<div class="flex items-center gap-3 bg-black/30 border border-white/10 rounded-xl px-3 py-2">' +
+          '<video src="' + v.localUrl + '" class="w-16 h-10 object-cover rounded-lg bg-black" muted></video>' +
+          '<div class="flex-1 min-w-0">' +
+          '<div class="text-xs text-white/80 font-semibold truncate">' + v.file.name + '</div>' +
+          '<div class="text-[10px] text-white/40">' + sizeMB + ' MB</div></div>' +
+          '<button type="button" onclick="removeVideo(' + i + ')" class="w-7 h-7 bg-red-900/40 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors flex-shrink-0">' +
+          '<svg class="w-3.5 h-3.5 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>' +
+          '</button></div>';
+      }).join('');
+    }
+
+    function removeVideo(idx) {
+      _pendingVideos.splice(idx, 1);
+      renderVideoList();
+      updateMediaBadges();
+    }
+
+    // ============================================================
+    // URL VALIDATOR — maneja Facebook, Drive, WhatsApp, etc.
+    // ============================================================
+    function validateAndAddUrl() {
+      var raw = document.getElementById('ap-img-url').value.trim();
+      if (!raw) return;
+      var status = document.getElementById('url-status');
+      status.className = 'mt-2 text-xs rounded-lg px-3 py-2 bg-blue-900/30 border border-blue-700/40 text-blue-300';
+      status.textContent = '🔍 Verificando URL…';
+      status.classList.remove('hidden');
+
+      var total = _pendingPhotos.length + _urlPhotos.length;
+      if (total >= 10) {
+        status.className = 'mt-2 text-xs rounded-lg px-3 py-2 bg-red-900/30 border border-red-700/40 text-red-400';
+        status.textContent = '❌ Ya tienes 10 fotos. Elimina una para agregar otra.';
+        return;
       }
-      document.getElementById('upload-label').innerHTML =
-        '<span class="text-orange-400 font-semibold">' + file.name + '</span><br/><span class="text-white/25">Listo para subir</span>';
+
+      // Intentar convertir URLs de Google Drive al formato directo
+      var url = convertToDirectUrl(raw);
+
+      var img = new Image();
+      var timeout = setTimeout(function() {
+        img.src = '';
+        status.className = 'mt-2 text-xs rounded-lg px-3 py-2 bg-yellow-900/30 border border-yellow-700/40 text-yellow-400';
+        status.innerHTML = '⚠️ No se pudo verificar la imagen.<br><span class="text-yellow-300/70">Las URLs de <b>Facebook</b> y <b>WhatsApp</b> no son públicas y no funcionan en páginas web. Usa <b>Google Drive</b> (formato compartido), <b>Cloudinary</b>, <b>Imgur</b> o sube el archivo directamente.</span>';
+      }, 5000);
+
+      img.onload = function() {
+        clearTimeout(timeout);
+        _urlPhotos.push({ url: url, validated: true });
+        document.getElementById('ap-img-url').value = '';
+        status.className = 'mt-2 text-xs rounded-lg px-3 py-2 bg-green-900/30 border border-green-700/40 text-green-400';
+        status.textContent = '✅ Imagen cargada correctamente.';
+        renderPhotoGrid();
+        updateMediaBadges();
+        setTimeout(function() { status.classList.add('hidden'); }, 3000);
+      };
+      img.onerror = function() {
+        clearTimeout(timeout);
+        status.className = 'mt-2 text-xs rounded-lg px-3 py-2 bg-red-900/30 border border-red-700/40 text-red-400';
+        status.innerHTML = '❌ La imagen no cargó.<br><span class="text-red-300/70">Esta URL no es accesible públicamente. <b>Facebook</b> y <b>WhatsApp</b> no permiten cargar imágenes así. Usa <b>Imgur</b>, <b>Google Drive</b> (compartido), o sube el archivo directamente.</span>';
+      };
+      img.src = url;
     }
 
-    function clearUpload() {
-      _uploadedFile = null;
-      _uploadedMediaType = 'image';
-      document.getElementById('ap-img-file').value = '';
-      document.getElementById('img-preview').src = '';
-      document.getElementById('vid-preview').src = '';
-      document.getElementById('img-preview-wrap').classList.add('hidden');
-      document.getElementById('vid-preview-wrap').classList.add('hidden');
-      document.getElementById('upload-label').innerHTML =
-        'Haz clic o arrastra una foto o video aqu\u00ed<br/><span class="text-white/25">JPG, PNG, WEBP, MP4, MOV &mdash; m\u00e1x. 100 MB</span>';
+    function convertToDirectUrl(url) {
+      // Google Drive: https://drive.google.com/file/d/FILE_ID/view → https://drive.google.com/uc?export=view&id=FILE_ID
+      var driveMatch = url.match(/drive\.google\.com\/file\/d\/([^\/]+)/);
+      if (driveMatch) return 'https://drive.google.com/uc?export=view&id=' + driveMatch[1];
+      // Google Drive open: https://drive.google.com/open?id=FILE_ID
+      var driveOpen = url.match(/drive\.google\.com\/open\?id=([^&]+)/);
+      if (driveOpen) return 'https://drive.google.com/uc?export=view&id=' + driveOpen[1];
+      return url;
     }
 
-    // Drag & drop
+    // ============================================================
+    // CLEAR ALL MEDIA (reset form)
+    // ============================================================
+    function clearAllMedia() {
+      _pendingPhotos = [];
+      _pendingVideos = [];
+      _urlPhotos = [];
+      var grid = document.getElementById('photo-preview-grid');
+      var list = document.getElementById('video-preview-list');
+      var status = document.getElementById('url-status');
+      if (grid) grid.innerHTML = '';
+      if (list) list.innerHTML = '';
+      if (status) { status.innerHTML = ''; status.classList.add('hidden'); }
+      var f1 = document.getElementById('ap-img-files');
+      var f2 = document.getElementById('ap-vid-files');
+      if (f1) f1.value = '';
+      if (f2) f2.value = '';
+      updateMediaBadges();
+    }
+
+    // Drag & drop (photos tab)
     document.addEventListener('DOMContentLoaded', function() {
-      var zone = document.getElementById('upload-zone');
+      var zone = document.getElementById('upload-zone-photos');
       if (!zone) return;
       zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('border-orange-500'); });
       zone.addEventListener('dragleave', function() { zone.classList.remove('border-orange-500'); });
       zone.addEventListener('drop', function(e) {
         e.preventDefault();
         zone.classList.remove('border-orange-500');
-        var file = e.dataTransfer.files[0];
-        if (file && (file.type.startsWith('image/') || file.type.startsWith('video/'))) {
-          var input = document.getElementById('ap-img-file');
-          var dt = new DataTransfer();
-          dt.items.add(file);
-          input.files = dt.files;
-          previewUpload(input);
-        }
+        var files = Array.from(e.dataTransfer.files).filter(function(f) { return f.type.startsWith('image/'); });
+        if (!files.length) return;
+        var fakeInput = { files: files, value: '' };
+        addPhotoFiles(fakeInput);
       });
     });
 
@@ -1413,10 +1666,6 @@
       if (!res.ok) throw new Error('Error Cloudinary: ' + res.statusText);
       var data = await res.json();
       return { url: data.secure_url, type: isVideo ? 'video' : 'image' };
-    }
-
-    function previewImageUrl(url) {
-      // helper para compatibilidad (no usado activamente)
     }
 
     // ============================================================
@@ -1441,22 +1690,18 @@
       document.getElementById('admin-form-title').textContent = '\u270F\uFE0F Editando: ' + prop.name;
       document.getElementById('btn-cancel-edit').style.display = '';
 
-      document.getElementById('ap-img-url').value = prop.mediaUrl || '';
-      if (prop.mediaUrl && prop.mediaType !== 'video') {
-        document.getElementById('img-preview').src = prop.mediaUrl;
-        document.getElementById('img-preview-wrap').classList.remove('hidden');
-        document.getElementById('vid-preview-wrap').classList.add('hidden');
-      } else if (prop.mediaUrl && prop.mediaType === 'video') {
-        document.getElementById('vid-preview').src = prop.mediaUrl;
-        document.getElementById('vid-preview-wrap').classList.remove('hidden');
-        document.getElementById('img-preview-wrap').classList.add('hidden');
-      }
-      _uploadedMediaType = prop.mediaType || 'image';
-      document.getElementById('upload-label').innerHTML =
-        '<span class="text-orange-400 font-semibold">Media actual cargada</span><br/><span class="text-white/25">Selecciona un nuevo archivo para reemplazar</span>';
+      // Restore media arrays
+      clearAllMedia();
+      var photos = prop.photos || (prop.mediaUrl && prop.mediaType !== 'video' ? [{ url: prop.mediaUrl, type: 'image' }] : []);
+      var videos = prop.videos || (prop.mediaUrl && prop.mediaType === 'video' ? [{ url: prop.mediaUrl, type: 'video' }] : []);
+      photos.forEach(function(ph) { _urlPhotos.push({ url: ph.url || ph, validated: true }); });
+      _pendingVideos = videos.map(function(v) { return { file: null, localUrl: v.url || v, cloudUrl: v.url || v, existing: true }; });
+      renderPhotoGrid();
+      renderVideoList();
+      updateMediaBadges();
+      switchMediaTab('photos');
 
       document.getElementById('ap-success').classList.add('hidden');
-      // Scroll al formulario dentro del panel
       document.querySelector('#admin-dashboard .p-6').scrollTop = 0;
     }
 
@@ -1468,16 +1713,17 @@
       document.getElementById('ap-type').value = 'apartamento';
       document.getElementById('ap-status').value = 'venta';
       document.getElementById('ap-img-url').value = '';
-      clearUpload();
+      clearAllMedia();
       var btn = document.querySelector('button[onclick="addProperty()"]');
       btn.textContent = 'Guardar Propiedad';
       btn.style.background = '';
       document.getElementById('admin-form-title').textContent = '\u2795 Agregar Propiedad';
       document.getElementById('btn-cancel-edit').style.display = 'none';
+      switchMediaTab('photos');
     }
 
     // ============================================================
-    // ADD / EDIT PROPERTY — Cloudinary para media, Firestore para datos
+    // ADD / EDIT PROPERTY — multi Cloudinary uploads + Firestore
     // ============================================================
     async function addProperty() {
       var name = document.getElementById('ap-name').value.trim();
@@ -1496,24 +1742,42 @@
 
       try {
         var propId = _editingId ? _editingId.id : ('custom-' + Date.now());
-        var mediaUrl = '';
-        var mediaType = _uploadedMediaType || 'image';
+        var photoUrls = [];
+        var videoUrls = [];
 
-        if (_uploadedFile) {
-          // Archivo nuevo desde dispositivo → subir a Cloudinary
-          btn.textContent = 'Subiendo a Cloudinary\u2026';
-          var uploaded = await uploadMedia(_uploadedFile, propId);
-          mediaUrl = uploaded.url;
-          mediaType = uploaded.type;
-        } else {
-          // Sin archivo → usar URL manual si existe
-          var urlInput = document.getElementById('ap-img-url').value.trim();
-          if (urlInput) { mediaUrl = urlInput; mediaType = 'image'; }
-          else if (_editingId) {
-            var existingProp = getAllProperties().find(function(p) { return p.id === propId; });
-            if (existingProp) { mediaUrl = existingProp.mediaUrl; mediaType = existingProp.mediaType || 'image'; }
+        // Upload pending photos to Cloudinary
+        var uploadablePhotos = _pendingPhotos.filter(function(p) { return p.file; });
+        for (var pi = 0; pi < uploadablePhotos.length; pi++) {
+          btn.textContent = 'Subiendo foto ' + (pi + 1) + '/' + uploadablePhotos.length + '\u2026';
+          var photoResult = await uploadMedia(uploadablePhotos[pi].file, propId + '_p' + pi);
+          photoUrls.push({ url: photoResult.url, type: 'image' });
+        }
+        // Add URL photos
+        _urlPhotos.forEach(function(p) { photoUrls.push({ url: p.url, type: 'image' }); });
+
+        // Upload new videos to Cloudinary
+        var uploadableVids = _pendingVideos.filter(function(v) { return v.file && !v.existing; });
+        for (var vi = 0; vi < uploadableVids.length; vi++) {
+          btn.textContent = 'Subiendo video ' + (vi + 1) + '/' + uploadableVids.length + '\u2026';
+          var vidResult = await uploadMedia(uploadableVids[vi].file, propId + '_v' + vi);
+          videoUrls.push({ url: vidResult.url, type: 'video' });
+        }
+        // Keep existing video URLs
+        _pendingVideos.filter(function(v) { return v.existing; }).forEach(function(v) {
+          videoUrls.push({ url: v.cloudUrl, type: 'video' });
+        });
+
+        // Fallback: if editing a base property and no new media, keep its original
+        if (photoUrls.length === 0 && videoUrls.length === 0 && _editingId) {
+          var existingProp = getAllProperties().find(function(p) { return p.id === _editingId.id || p.id === propId; });
+          if (existingProp && existingProp.mediaUrl) {
+            if (existingProp.mediaType === 'video') videoUrls.push({ url: existingProp.mediaUrl, type: 'video' });
+            else photoUrls.push({ url: existingProp.mediaUrl, type: 'image' });
           }
         }
+
+        var primaryMediaUrl = photoUrls.length > 0 ? photoUrls[0].url : (videoUrls.length > 0 ? videoUrls[0].url : '');
+        var primaryMediaType = photoUrls.length > 0 ? 'image' : (videoUrls.length > 0 ? 'video' : 'image');
 
         var typeLabels = { apartamento: 'Apartamento', edificio: 'Edificio', lote: 'Lote' };
         var newProp = {
@@ -1525,8 +1789,10 @@
           price: price,
           area: area || '-',
           status: status,
-          mediaUrl: mediaUrl,
-          mediaType: mediaType,
+          mediaUrl: primaryMediaUrl,
+          mediaType: primaryMediaType,
+          photos: photoUrls,
+          videos: videoUrls,
           custom: true,
           timestamp: firebaseReady ? firebase.firestore.FieldValue.serverTimestamp() : Date.now()
         };
@@ -1535,7 +1801,6 @@
         if (firebaseReady) {
           var docId = (_editingId && _editingId.firestoreId) ? _editingId.firestoreId : propId;
           if (_editingId && _editingId.isBase) {
-            // Si se edita una propiedad base, la guardamos como override en Firestore
             newProp.id = propId;
             await db.collection('catalog').doc(propId).set(newProp);
             await db.collection('settings').doc('catalog').set(
@@ -1555,9 +1820,10 @@
           renderAdminList();
         }
 
+        var wasEditing = _editingId;
         cancelEdit();
         var successMsg = document.getElementById('ap-success');
-        successMsg.textContent = _editingId ? '\u2705 Propiedad actualizada correctamente' : '\u2705 Propiedad publicada correctamente';
+        successMsg.textContent = wasEditing ? '\u2705 Propiedad actualizada correctamente' : '\u2705 Propiedad publicada correctamente';
         successMsg.classList.remove('hidden');
         setTimeout(function() { successMsg.classList.add('hidden'); }, 3000);
 
@@ -1574,34 +1840,54 @@
     // DELETE PROPERTY
     // ============================================================
     async function deleteProperty(id, firestoreId) {
-      if (!confirm('\u00bfEliminar esta propiedad?')) return;
+      if (!confirm('¿Eliminar esta propiedad del catálogo?')) return;
       var isBase = BASE_PROPERTIES.some(function(p) { return p.id === id; });
 
-      if (firebaseReady) {
-        if (isBase) {
-          await db.collection('settings').doc('catalog').set(
-            { deletedIds: firebase.firestore.FieldValue.arrayUnion(id) },
-            { merge: true }
-          );
+      // Deshabilitar botón visualmente mientras se procesa
+      var btns = document.querySelectorAll('#admin-prop-list button');
+      btns.forEach(function(b) { b.disabled = true; });
+
+      try {
+        if (firebaseReady) {
+          if (isBase) {
+            // Propiedad BASE: guardar su ID en la lista de eliminados en Firestore
+            await db.collection('settings').doc('catalog').set(
+              { deletedIds: firebase.firestore.FieldValue.arrayUnion(id) },
+              { merge: true }
+            );
+            // Actualización inmediata local (sin esperar el onSnapshot)
+            if (!deletedBaseIds.includes(id)) deletedBaseIds.push(id);
+          } else {
+            // Propiedad CUSTOM: eliminar documento de Firestore
+            var docId = firestoreId || id;
+            await db.collection('catalog').doc(docId).delete();
+          }
+          // Refrescar UI de inmediato sin esperar onSnapshot
+          renderCatalog(currentFilter);
+          renderAdminList();
         } else {
-          var docId = firestoreId || id;
-          await db.collection('catalog').doc(docId).delete();
+          // Modo localStorage (sin Firebase)
+          if (isBase) {
+            var deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
+            if (!deleted.includes(id)) deleted.push(id);
+            localStorage.setItem('ikar_deleted', JSON.stringify(deleted));
+            deletedBaseIds = deleted;
+          } else {
+            var saved = JSON.parse(localStorage.getItem('ikar_props') || '[]');
+            saved = saved.filter(function(p) { return p.id !== id; });
+            localStorage.setItem('ikar_props', JSON.stringify(saved));
+            customProperties = saved;
+          }
+          renderCatalog(currentFilter);
+          renderAdminList();
         }
-        // onSnapshot dispara la actualización en todos los dispositivos
-      } else {
-        if (isBase) {
-          var deleted = JSON.parse(localStorage.getItem('ikar_deleted') || '[]');
-          if (!deleted.includes(id)) deleted.push(id);
-          localStorage.setItem('ikar_deleted', JSON.stringify(deleted));
-          deletedBaseIds = deleted;
-        } else {
-          var saved = JSON.parse(localStorage.getItem('ikar_props') || '[]');
-          saved = saved.filter(function(p) { return p.id !== id; });
-          localStorage.setItem('ikar_props', JSON.stringify(saved));
-          customProperties = saved;
-        }
-        renderCatalog(currentFilter);
-        renderAdminList();
+      } catch (e) {
+        console.error('Error al eliminar:', e);
+        alert('Error al eliminar la propiedad: ' + e.message);
+      } finally {
+        // Re-habilitar botones (renderAdminList los recrea, pero por si acaso)
+        var btnsAfter = document.querySelectorAll('#admin-prop-list button');
+        btnsAfter.forEach(function(b) { b.disabled = false; });
       }
     }
 
