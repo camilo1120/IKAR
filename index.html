@@ -248,6 +248,264 @@
       color: #888;
       border: 1px solid rgba(255, 255, 255, .15);
     }
+
+    /* ===== PROYECTOS TERMINADOS ===== */
+    .pt-card {
+      background: #1A1A1A;
+      border: 1px solid rgba(255,255,255,.06);
+      transition: transform .35s, box-shadow .35s;
+    }
+    .pt-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 64px rgba(255,107,0,.18);
+    }
+    .pt-thumb {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .pt-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .pt-card:hover .pt-thumb img {
+      transform: scale(1.07);
+    }
+    .pt-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 60%);
+    }
+    .pt-thumb-overlay .pt-open-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%) scale(0);
+      width: 52px;
+      height: 52px;
+      background: rgba(255,107,0,.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .3s;
+    }
+    .pt-thumb:hover .pt-open-icon {
+      transform: translate(-50%,-50%) scale(1);
+    }
+    .pt-dots {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+    .pt-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .pt-dot.active {
+      background: #FF6B00;
+      transform: scale(1.3);
+    }
+
+    /* Lightbox */
+    #pt-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.96);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    #pt-lightbox.open { display: flex; }
+    #pt-lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 80px rgba(255,107,0,.15);
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,107,0,.8);
+      border: none;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+    .lb-btn:hover { background: #FF6B00; }
+    #lb-prev { left: 16px; }
+    #lb-next { right: 16px; }
+    #lb-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,.1);
+      border: none;
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #lb-close:hover { background: rgba(255,255,255,.2); }
+    #lb-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.6);
+      font-size: 13px;
+    }
+    #lb-title {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    /* ===== VIDEO SHOWCASE ===== */
+    #video-showcase {
+      background: linear-gradient(135deg, #0a0a0a 0%, #001020 60%, #0a0a0a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #video-showcase::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,107,0,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #video-showcase::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,51,102,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .video-phone-frame {
+      position: relative;
+      width: 280px;
+      flex-shrink: 0;
+    }
+    @media (min-width: 768px) {
+      .video-phone-frame { width: 300px; }
+    }
+    @media (min-width: 1024px) {
+      .video-phone-frame { width: 320px; }
+    }
+    .video-phone-frame::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 38px;
+      background: linear-gradient(145deg, rgba(255,107,0,0.6), rgba(201,168,76,0.3), rgba(255,107,0,0.1));
+      z-index: 0;
+    }
+    .video-phone-inner {
+      position: relative;
+      z-index: 1;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+    .video-phone-inner video {
+      width: 100%;
+      display: block;
+      border-radius: 36px;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+    }
+    .video-glow {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 80px;
+      background: rgba(255,107,0,0.25);
+      filter: blur(30px);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .vs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,107,0,0.12);
+      border: 1px solid rgba(255,107,0,0.35);
+      color: #FF8C33;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .vs-stat {
+      border-left: 2px solid rgba(255,107,0,0.4);
+      padding-left: 16px;
+    }
+    .vs-stat-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: #FF6B00;
+      line-height: 1;
+    }
+    .vs-stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 3px;
+    }
+    .video-play-pulse {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .video-phone-inner:hover .video-play-pulse {
+      opacity: 1;
+    }
   </style>
 </head>
 
@@ -267,6 +525,8 @@
           class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Servicios</a>
         <a href="#catalogo"
           class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Catálogo</a>
+        <a href="#proyectos-terminados"
+          class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Terminados</a>
         <a href="#nosotros"
           class="nav-link text-white text-sm font-medium tracking-wide hover:text-orange-400 transition-colors">Nosotros</a>
         <a href="#contacto"
@@ -298,6 +558,8 @@
           class="text-white text-sm font-medium hover:text-orange-400">Servicios</a>
         <a href="#catalogo" onclick="closeMobileMenu()"
           class="text-white text-sm font-medium hover:text-orange-400">Catálogo</a>
+        <a href="#proyectos-terminados" onclick="closeMobileMenu()"
+          class="text-white text-sm font-medium hover:text-orange-400">Terminados</a>
         <a href="#nosotros" onclick="closeMobileMenu()"
           class="text-white text-sm font-medium hover:text-orange-400">Nosotros</a>
         <a href="#contacto" onclick="closeMobileMenu()"
@@ -320,7 +582,13 @@
   <!-- ===================== HERO ===================== -->
   <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img src="images/hero_new.png" alt="Proyecto IKAR Desarrollador Urbanístico e Inmobiliario" class="w-full h-full object-cover" />
+      <video
+        autoplay muted loop playsinline
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
+        poster="images/hero_new.png"
+      >
+        <source src="images/ikar-video-web.mp4" type="video/mp4" />
+      </video>
       <div class="hero-overlay absolute inset-0"></div>
     </div>
     <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
@@ -378,6 +646,79 @@
       </div>
     </div>
   </section>
+
+  <!-- VIDEO SHOWCASE eliminado: video integrado en el hero -->
+  <div style="display:none" id="video-showcase">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-14 lg:gap-20">
+
+        <!-- LEFT: Texto -->
+        <div class="flex-1 text-center lg:text-left reveal">
+          <div class="vs-badge">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+            En vivo · Nuestros proyectos
+          </div>
+          <h2 class="text-4xl md:text-5xl xl:text-6xl font-black text-white leading-tight mb-6">
+            Construimos<br/>
+            <span class="text-gradient">Hogares</span><br/>
+            con Alma
+          </h2>
+          <p class="text-white/55 text-base md:text-lg leading-relaxed mb-10 max-w-lg mx-auto lg:mx-0">
+            Cada edificio IKAR es el resultado de años de experiencia, materiales de primera calidad y un equipo comprometido con entregar el hogar que tu familia merece en Piedecuesta, Santander.
+          </p>
+
+          <!-- Stats -->
+          <div class="flex flex-wrap justify-center lg:justify-start gap-8 mb-10">
+            <div class="vs-stat">
+              <div class="vs-stat-num">+30</div>
+              <div class="vs-stat-label">Proyectos ejecutados</div>
+            </div>
+            <div class="vs-stat">
+              <div class="vs-stat-num">7</div>
+              <div class="vs-stat-label">Años de experiencia</div>
+            </div>
+            <div class="vs-stat">
+              <div class="vs-stat-num">500+</div>
+              <div class="vs-stat-label">Familias felices</div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <a href="#catalogo"
+              class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-7 py-3.5 rounded-full text-sm tracking-wide transition-all shadow-lg shadow-orange-900/30 hover:-translate-y-1 inline-flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+              Ver Catálogo
+            </a>
+            <a href="#proyectos-terminados"
+              class="border border-white/25 hover:border-orange-500 text-white/80 hover:text-orange-400 font-semibold px-7 py-3.5 rounded-full text-sm transition-all hover:-translate-y-1 inline-flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Proyectos Terminados
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: Video vertical -->
+        <div class="flex justify-center reveal" style="transition-delay:.2s">
+          <div class="video-phone-frame">
+            <div class="video-phone-inner">
+              <video
+                id="ikar-promo-video"
+                src="images/ikar-video-web.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto"
+              ></video>
+            </div>
+            <div class="video-glow"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- ===================== SOBRE NOSOTROS ===================== -->
   <section id="nosotros" class="py-24 bg-carbon-2 relative overflow-hidden">
@@ -639,6 +980,215 @@
       <div id="catalog-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
   </section>
+
+  <!-- ===================== PROYECTOS TERMINADOS ===================== -->
+  <section id="proyectos-terminados" class="py-24 bg-carbon relative overflow-hidden">
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-orange-600/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-6 relative">
+      <div class="text-center mb-16 reveal">
+        <span class="text-orange-400 text-xs font-bold tracking-widest uppercase">Nuestro portafolio</span>
+        <h2 class="text-3xl md:text-5xl font-black text-white mt-2 mb-4">Proyectos Terminados</h2>
+        <div class="section-divider mx-auto mb-6"></div>
+        <p class="text-white/50 max-w-2xl mx-auto text-sm">7 edificios entregados con excelencia. Cada proyecto es un testimonio de nuestra calidad constructiva y compromiso con las familias colombianas.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <!-- ARARAT -->
+        <div class="pt-card rounded-3xl overflow-hidden shadow-xl reveal" data-project="ararat">
+          <div class="pt-thumb" onclick="openLightbox('ararat',0)">
+            <img id="ararat-img" src="images/proyectos-terminados/ararat/fachada.jpg" alt="Edificio Ararat" />
+            <div class="pt-thumb-overlay">
+              <div class="pt-open-icon">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+              </div>
+              <div class="absolute bottom-3 left-4">
+                <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Entregado</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-lg mb-1">Edificio Ararat</h3>
+            <p class="text-white/45 text-xs mb-3">Piedecuesta, Santander</p>
+            <div class="pt-dots" id="ararat-dots">
+              <div class="pt-dot active" onclick="changeSlide('ararat',0)"></div>
+              <div class="pt-dot" onclick="changeSlide('ararat',1)"></div>
+              <div class="pt-dot" onclick="changeSlide('ararat',2)"></div>
+              <div class="pt-dot" onclick="changeSlide('ararat',3)"></div>
+              <div class="pt-dot" onclick="changeSlide('ararat',4)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BETHEL -->
+        <div class="pt-card rounded-3xl overflow-hidden shadow-xl reveal" data-project="bethel" style="transition-delay:.1s">
+          <div class="pt-thumb" onclick="openLightbox('bethel',0)">
+            <img id="bethel-img" src="images/proyectos-terminados/bethel/fachada.jpeg" alt="Edificio Bethel" />
+            <div class="pt-thumb-overlay">
+              <div class="pt-open-icon">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+              </div>
+              <div class="absolute bottom-3 left-4">
+                <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Entregado</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-lg mb-1">Edificio Bethel</h3>
+            <p class="text-white/45 text-xs mb-3">Piedecuesta, Santander</p>
+            <div class="pt-dots" id="bethel-dots">
+              <div class="pt-dot active" onclick="changeSlide('bethel',0)"></div>
+              <div class="pt-dot" onclick="changeSlide('bethel',1)"></div>
+              <div class="pt-dot" onclick="changeSlide('bethel',2)"></div>
+              <div class="pt-dot" onclick="changeSlide('bethel',3)"></div>
+              <div class="pt-dot" onclick="changeSlide('bethel',4)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENMANUEL -->
+        <div class="pt-card rounded-3xl overflow-hidden shadow-xl reveal" data-project="enmanuel" style="transition-delay:.2s">
+          <div class="pt-thumb" onclick="openLightbox('enmanuel',0)">
+            <img id="enmanuel-img" src="images/proyectos-terminados/enmanuel/fachada.jpg" alt="Edificio Enmanuel" />
+            <div class="pt-thumb-overlay">
+              <div class="pt-open-icon">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+              </div>
+              <div class="absolute bottom-3 left-4">
+                <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Entregado</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-lg mb-1">Edificio Enmanuel</h3>
+            <p class="text-white/45 text-xs mb-3">Piedecuesta, Santander</p>
+            <div class="pt-dots" id="enmanuel-dots">
+              <div class="pt-dot active" onclick="changeSlide('enmanuel',0)"></div>
+              <div class="pt-dot" onclick="changeSlide('enmanuel',1)"></div>
+              <div class="pt-dot" onclick="changeSlide('enmanuel',2)"></div>
+              <div class="pt-dot" onclick="changeSlide('enmanuel',3)"></div>
+              <div class="pt-dot" onclick="changeSlide('enmanuel',4)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- IKAR -->
+        <div class="pt-card rounded-3xl overflow-hidden shadow-xl reveal" data-project="ikar" style="transition-delay:.3s">
+          <div class="pt-thumb" onclick="openLightbox('ikar',0)">
+            <img id="ikar-img" src="images/proyectos-terminados/ikar/fachada.jpg" alt="Edificio IKAR" />
+            <div class="pt-thumb-overlay">
+              <div class="pt-open-icon">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+              </div>
+              <div class="absolute bottom-3 left-4">
+                <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Entregado</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-lg mb-1">Edificio IKAR</h3>
+            <p class="text-white/45 text-xs mb-3">Piedecuesta, Santander</p>
+            <div class="pt-dots" id="ikar-dots">
+              <div class="pt-dot active" onclick="changeSlide('ikar',0)"></div>
+              <div class="pt-dot" onclick="changeSlide('ikar',1)"></div>
+              <div class="pt-dot" onclick="changeSlide('ikar',2)"></div>
+              <div class="pt-dot" onclick="changeSlide('ikar',3)"></div>
+              <div class="pt-dot" onclick="changeSlide('ikar',4)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LIAM -->
+        <div class="pt-card rounded-3xl overflow-hidden shadow-xl reveal" data-project="liam" style="transition-delay:.4s">
+          <div class="pt-thumb" onclick="openLightbox('liam',0)">
+            <img id="liam-img" src="images/proyectos-terminados/liam/fachada.jpeg" alt="Edificio Liam" />
+            <div class="pt-thumb-overlay">
+              <div class="pt-open-icon">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+              </div>
+              <div class="absolute bottom-3 left-4">
+                <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Entregado</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-lg mb-1">Edificio Liam</h3>
+            <p class="text-white/45 text-xs mb-3">Piedecuesta, Santander</p>
+            <div class="pt-dots" id="liam-dots">
+              <div class="pt-dot active" onclick="changeSlide('liam',0)"></div>
+              <div class="pt-dot" onclick="changeSlide('liam',1)"></div>
+              <div class="pt-dot" onclick="changeSlide('liam',2)"></div>
+              <div class="pt-dot" onclick="changeSlide('liam',3)"></div>
+              <div class="pt-dot" onclick="changeSlide('liam',4)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NATTAN -->
+        <div class="pt-card rounded-3xl overflow-hidden shadow-xl reveal" data-project="nattan" style="transition-delay:.5s">
+          <div class="pt-thumb" onclick="openLightbox('nattan',0)">
+            <img id="nattan-img" src="images/proyectos-terminados/nattan/fachada.jpeg" alt="Edificio Nattan" />
+            <div class="pt-thumb-overlay">
+              <div class="pt-open-icon">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+              </div>
+              <div class="absolute bottom-3 left-4">
+                <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Entregado</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-lg mb-1">Edificio Nattan</h3>
+            <p class="text-white/45 text-xs mb-3">Piedecuesta, Santander</p>
+            <div class="pt-dots" id="nattan-dots">
+              <div class="pt-dot active" onclick="changeSlide('nattan',0)"></div>
+              <div class="pt-dot" onclick="changeSlide('nattan',1)"></div>
+              <div class="pt-dot" onclick="changeSlide('nattan',2)"></div>
+              <div class="pt-dot" onclick="changeSlide('nattan',3)"></div>
+              <div class="pt-dot" onclick="changeSlide('nattan',4)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OLAM -->
+        <div class="pt-card rounded-3xl overflow-hidden shadow-xl reveal" data-project="olam" style="transition-delay:.6s">
+          <div class="pt-thumb" onclick="openLightbox('olam',0)">
+            <img id="olam-img" src="images/proyectos-terminados/olam/fachada.jpg" alt="Edificio Olam" />
+            <div class="pt-thumb-overlay">
+              <div class="pt-open-icon">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+              </div>
+              <div class="absolute bottom-3 left-4">
+                <span class="bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Entregado</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-white font-bold text-lg mb-1">Edificio Olam</h3>
+            <p class="text-white/45 text-xs mb-3">Piedecuesta, Santander</p>
+            <div class="pt-dots" id="olam-dots">
+              <div class="pt-dot active" onclick="changeSlide('olam',0)"></div>
+              <div class="pt-dot" onclick="changeSlide('olam',1)"></div>
+              <div class="pt-dot" onclick="changeSlide('olam',2)"></div>
+              <div class="pt-dot" onclick="changeSlide('olam',3)"></div>
+              <div class="pt-dot" onclick="changeSlide('olam',4)"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /grid -->
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div id="pt-lightbox" onclick="closeLightboxOutside(event)">
+    <div id="lb-title"></div>
+    <img id="lb-img" src="" alt="Foto del proyecto" />
+    <button class="lb-btn" id="lb-prev" onclick="lbNav(-1)">&#8249;</button>
+    <button class="lb-btn" id="lb-next" onclick="lbNav(1)">&#8250;</button>
+    <button id="lb-close" onclick="closeLightbox()">&#x2715;</button>
+    <div id="lb-counter"></div>
+  </div>
 
   <!-- ===================== TESTIMONIOS ===================== -->
   <section id="testimonios" class="py-24 bg-carbon">
@@ -1946,6 +2496,68 @@
       // Si Firebase está listo, sus listeners actualizarán los datos al llegar.
       renderCatalog('all');
     });
+
+    // ============================================================
+    // PROYECTOS TERMINADOS — datos de imágenes
+    // ============================================================
+    var ptProjects = {
+      ararat:   { name:'Edificio Ararat',   imgs:['images/proyectos-terminados/ararat/fachada.jpg','images/proyectos-terminados/ararat/fachada2.jpeg','images/proyectos-terminados/ararat/sala.jpg','images/proyectos-terminados/ararat/cocina.jpg','images/proyectos-terminados/ararat/bano.jpg'] },
+      bethel:   { name:'Edificio Bethel',   imgs:['images/proyectos-terminados/bethel/fachada.jpeg','images/proyectos-terminados/bethel/fachada2.jpeg','images/proyectos-terminados/bethel/sala.jpg','images/proyectos-terminados/bethel/sala2.jpg','images/proyectos-terminados/bethel/muro.jpg'] },
+      enmanuel: { name:'Edificio Enmanuel', imgs:['images/proyectos-terminados/enmanuel/fachada.jpg','images/proyectos-terminados/enmanuel/fachada2.jpeg','images/proyectos-terminados/enmanuel/sala.jpg','images/proyectos-terminados/enmanuel/muro.jpeg','images/proyectos-terminados/enmanuel/estructura.jpg'] },
+      ikar:     { name:'Edificio IKAR',     imgs:['images/proyectos-terminados/ikar/fachada.jpg','images/proyectos-terminados/ikar/fachada2.jpg','images/proyectos-terminados/ikar/sala.jpg','images/proyectos-terminados/ikar/cocina.jpg','images/proyectos-terminados/ikar/jardin.jpg'] },
+      liam:     { name:'Edificio Liam',     imgs:['images/proyectos-terminados/liam/fachada.jpeg','images/proyectos-terminados/liam/fachada2.png','images/proyectos-terminados/liam/sala.png','images/proyectos-terminados/liam/cocina.png','images/proyectos-terminados/liam/amoblado.jpeg'] },
+      nattan:   { name:'Edificio Nattan',   imgs:['images/proyectos-terminados/nattan/fachada.jpeg','images/proyectos-terminados/nattan/fachada2.jpeg','images/proyectos-terminados/nattan/cocina.jpeg','images/proyectos-terminados/nattan/bano.jpeg','images/proyectos-terminados/nattan/collage.jpeg'] },
+      olam:     { name:'Edificio Olam',     imgs:['images/proyectos-terminados/olam/fachada.jpg','images/proyectos-terminados/olam/fachada2.jpg','images/proyectos-terminados/olam/sala.jpeg','images/proyectos-terminados/olam/cocina.jpeg','images/proyectos-terminados/olam/amoblado.jpeg'] }
+    };
+
+    var ptCurrent = {}; // índice actual de cada proyecto
+
+    function changeSlide(proj, idx) {
+      ptCurrent[proj] = idx;
+      var data = ptProjects[proj];
+      document.getElementById(proj + '-img').src = data.imgs[idx];
+      var dots = document.getElementById(proj + '-dots').querySelectorAll('.pt-dot');
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    }
+
+    // Lightbox
+    var lbProj = null, lbIdx = 0;
+
+    function openLightbox(proj, idx) {
+      lbProj = proj;
+      lbIdx = idx;
+      var data = ptProjects[proj];
+      document.getElementById('lb-img').src = data.imgs[idx];
+      document.getElementById('lb-title').textContent = data.name;
+      document.getElementById('lb-counter').textContent = (idx + 1) + ' / ' + data.imgs.length;
+      document.getElementById('pt-lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('pt-lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeLightboxOutside(e) {
+      if (e.target === document.getElementById('pt-lightbox')) closeLightbox();
+    }
+
+    function lbNav(dir) {
+      var data = ptProjects[lbProj];
+      lbIdx = (lbIdx + dir + data.imgs.length) % data.imgs.length;
+      document.getElementById('lb-img').src = data.imgs[lbIdx];
+      document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + data.imgs.length;
+    }
+
+    document.addEventListener('keydown', function(e) {
+      var lb = document.getElementById('pt-lightbox');
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'ArrowRight') lbNav(1);
+      else if (e.key === 'ArrowLeft') lbNav(-1);
+      else if (e.key === 'Escape') closeLightbox();
+    });
+
   </script>
 </body>
 
